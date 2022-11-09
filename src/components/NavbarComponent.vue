@@ -1,12 +1,34 @@
 // TODO: Fabio la fai tu?
 <template>
   <nav class="main-menu">
+    <div class="logo-section">
+      <img src="@/assets/img/logo.png" alt="logo" />
+      <h1>UNITI</h1>
+    </div>
     <ul>
       <li>
-        <a href="http://justinfarrow.com">
-          <i class="fa fa-home fa-2x"></i>
-          <span class="nav-text"> Fabio è tutta tua! </span>
-        </a>
+        <router-link to="/">
+          <img src="@/assets/img/homepage.png" />
+          <span class="nav-text"> Home </span>
+        </router-link>
+      </li>
+      <li>
+        <router-link to="/subscription">
+          <img src="@/assets/img/subscription.png" />
+          <span class="nav-text"> Iscrizioni </span>
+        </router-link>
+      </li>
+      <li>
+        <router-link to="/balon">
+          <img src="@/assets/img/store.png" />
+          <span class="nav-text"> Balon </span>
+        </router-link>
+      </li>
+      <li>
+        <router-link to="/friends">
+          <img src="@/assets/img/friends.png" />
+          <span class="nav-text"> Amici </span>
+        </router-link>
       </li>
     </ul>
   </nav>
@@ -44,18 +66,56 @@ export default {
     display: none;
   }
 }
+
+.logo-section {
+  width: 100%;
+  height: 6%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  margin: 0.5em 1em;
+}
+
+.logo-section img {
+  width: 3em;
+  height: 3em;
+  margin-right: 1em;
+}
+
+.logo-section h1 {
+  font-size: 2.6em;
+  color: var(--primary-color);
+  font-weight: bold;
+}
 .main-menu ul {
   list-style: none;
-  padding: 0;
-  margin: 0;
+  padding: 2em 2em;
+  margin: auto;
+  float: left;
+  width: 100%;
+  text-align: left;
 }
 
 .main-menu ul li {
   position: relative;
   display: block;
   width: 100%;
-  line-height: 45px;
-  border-bottom: 1px solid #232f3e;
+  height: 3em;
+  margin: 1em 0;
+  cursor: pointer;
+}
+
+.main-menu ul li img {
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: middle;
+  margin-right: 1em;
+}
+
+.main-menu ul li span {
+  vertical-align: middle;
+  font-size: 1.5em;
+  font-weight: 500;
 }
 
 .nav-text {

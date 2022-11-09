@@ -56,7 +56,8 @@ export default {
 
 @media screen and (min-width: 400px) {
   .header {
-    height: 20%;
+    height: 35%;
+    max-height: min(300px, 35vh);
   }
 }
 
