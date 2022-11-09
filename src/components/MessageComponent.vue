@@ -64,6 +64,11 @@ export default {
   padding: 0;
 }
 
+.message-title h2 {
+  margin: 0;
+  padding: 0;
+}
+
 .message-content {
   margin: 0;
   padding: 0;

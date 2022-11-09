@@ -10,6 +10,7 @@
   --red-ice-low-opacity: rgba(255, 240, 240, 0.3);
 	--white: #ffffff;
   --telegram: #D9E7F9;
+	--header-gradient: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 32.29%, rgba(0, 0, 0, 0.6) 90%);
 }
 
 ::-webkit-scrollbar {

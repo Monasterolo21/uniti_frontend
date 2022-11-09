@@ -1,9 +1,9 @@
 <template>
   <div class="panel">
     <header-component
-      title="Home"
-      subtitle="Guarda quello che le persone pubblicano su UNITI"
-      background="https://images.unsplash.com/photo-1532622785990-d2c36a76f5a6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+      title="Giovanna Rossi"
+      subtitle="Mi piace il calcio"
+      background="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80"
     />
     <messages-component :messages="messages" />
     <input-bar-component text="Scrivi nella home" />
@@ -29,8 +29,6 @@ export default {
             "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80",
           date: "20/11/2022 - 15:10",
           title: "Ciao a tutti",
-          content:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc ut aliquam ultricies, nunc nisl aliquam nisl, eget aliquam nisl lorem quis nunc. Sed euismod, nunc ut aliquam ultricies, nunc nisl aliquam nisl, eget aliquam nisl lorem quis nunc.",
         },
         {
           id: 2,
@@ -40,8 +38,6 @@ export default {
           date: "20/11/2022 - 15:10",
           title: "Ciao a tutti",
           telegram: true,
-          content:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc ut aliquam ultricies, nunc nisl aliquam nisl, eget aliquam nisl lorem quis nunc. Sed euismod, nunc ut aliquam ultricies, nunc nisl aliquam nisl, eget aliquam nisl lorem quis nunc.",
         },
         {
           id: 3,
@@ -50,8 +46,6 @@ export default {
             "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80",
           date: "20/11/2022 - 15:10",
           title: "Ciao a tutti",
-          content:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc ut aliquam ultricies, nunc nisl aliquam nisl, eget aliquam nisl lorem quis nunc. Sed euismod, nunc ut aliquam ultricies, nunc nisl aliquam nisl, eget aliquam nisl lorem quis nunc.",
         },
       ],
     };

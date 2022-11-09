@@ -1,5 +1,10 @@
 <template>
-  <div class="header">
+  <div
+    class="header"
+    v-bind:style="
+      'background-image: var(--header-gradient), url(' + background + '); '
+    "
+  >
     <div class="top-position">
       <SearchComponent />
       <AvatarComponent />
@@ -25,6 +30,10 @@ export default {
       type: String,
       required: true,
     },
+    background: {
+      type: String,
+      required: true,
+    },
   },
   components: { SearchComponent, AvatarComponent },
 };
@@ -32,13 +41,6 @@ export default {
 
 <style>
 .header {
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.07) 32.29%, #000000 100%),
-    radial-gradient(
-      34.38% 216.65% at 51.79% 51.62%,
-      rgba(0, 0, 0, 0.88) 0%,
-      rgba(0, 0, 0, 0.4) 100%
-    ),
-    url("https://images.unsplash.com/photo-1532622785990-d2c36a76f5a6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
   width: 100%;
   margin: auto;
   background-size: cover;
@@ -50,6 +52,12 @@ export default {
   z-index: 0;
   text-align: center;
   left: 0;
+}
+
+@media screen and (min-width: 400px) {
+  .header {
+    height: 20%;
+  }
 }
 
 .top-position {
