@@ -16,7 +16,12 @@ const routes = [
     path: '/balon',
     name: 'balon',
     component: () => import(/* webpackChunkName: "balon" */ '../views/BalonView.vue')
-  }
+  },
+  {
+    path: '/subscription',
+    name: 'subscription',
+    component: () => import(/* webpackChunkName: "subscription" */ '../views/SubscriptionView.vue')
+  },
 ]
 
 const router = createRouter({

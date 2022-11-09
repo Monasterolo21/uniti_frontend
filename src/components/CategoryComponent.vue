@@ -48,13 +48,13 @@ export default {
   padding: 2% 0 25% 0;
 }
 .subclass-horizontal-cards {
-  padding: 1em 0 0.5em 0.5em;
+  padding: 1em 0 1em 3%;
   overflow: hidden;
 }
 .subclass-horizontal-cards h1 {
   margin: 0;
   padding: 0;
-  font-size: 2em;
+  font-size: 2.3em;
   float: left;
   width: 100%;
   text-align: left;

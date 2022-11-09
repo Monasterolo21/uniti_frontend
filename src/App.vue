@@ -2,7 +2,7 @@
   <NavbarComponent />
   <router-view v-slot="{ Component }">
     <transition name="fade" @before-enter="scrollTop" mode="out-in" appear>
-      <keep-alive include="HomeView, SubscriptionVIew, BalonView, FriendsView">
+      <keep-alive include="HomeView, SubscriptionView, BalonView, FriendsView">
         <component :is="Component" />
       </keep-alive>
     </transition>
