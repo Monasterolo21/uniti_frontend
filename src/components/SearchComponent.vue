@@ -1,9 +1,11 @@
 <template>
   <div class="search-box">
-    <!-- <div class="search-icon">
-      <img src="@/assets/img/search.svg" />
-    </div> -->
-    <p>Cerca su UNITI</p>
+    <input
+      type="text"
+      placeholder="Cerca su UNITI"
+      v-model="search"
+      @keyup.enter="sendMessage"
+    />
   </div>
 </template>
 
@@ -11,7 +13,25 @@
 export default {};
 </script>
 
-<style>
+<style scoped>
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: var(--white);
+  opacity: 0.9; /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: var(--white);
+  opacity: 0.9; /* Firefox */
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: var(--white);
+  opacity: 0.9; /* Firefox */
+}
+
 .search-box {
   width: 80%;
   height: 2.5em;
@@ -22,18 +42,18 @@ export default {};
   -webkit-backdrop-filter: blur(20px);
   vertical-align: middle;
   text-align: left;
-  padding: 0 2em;
+  padding: 0 1em;
 }
 
 @media screen and (max-width: 400px) {
   .search-box {
-    max-width: 200px;
+    max-width: 70%;
   }
 }
 
 .search-icon {
-  width: 1.5em;
-  height: 1.5em;
+  width: 1em;
+  height: 1em;
   float: left;
   margin: auto 2%;
   vertical-align: middle;
@@ -54,6 +74,18 @@ export default {};
   line-height: 2em;
   vertical-align: middle;
   text-align: left;
+  vertical-align: middle;
+}
+
+.search-box input {
+  width: 80%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--white);
+  font-size: 1.2em;
+  font-weight: 300;
   vertical-align: middle;
 }
 </style>

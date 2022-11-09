@@ -5,15 +5,17 @@
       subtitle="Guarda quello che le persone pubblicano su UNITI"
     />
     <messages-component :messages="messages" />
+    <input-bar-component text="Scrivi nella home" />
   </div>
 </template>
 
 <script>
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import MessagesComponent from "@/components/MessagesComponent.vue";
+import InputBarComponent from "@/components/InputBarComponent.vue";
 
 export default {
-  components: { HeaderComponent, MessagesComponent },
+  components: { HeaderComponent, MessagesComponent, InputBarComponent },
   name: "HomeView",
 
   data() {
