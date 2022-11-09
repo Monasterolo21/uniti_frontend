@@ -13,8 +13,8 @@ export default {};
 
 <style>
 .search-box {
-  width: 70%;
-  height: 2em;
+  width: 80%;
+  height: 2.5em;
   background-color: var(--red-ice-low-opacity);
   border-radius: 10px;
   margin: 10px 0;
@@ -27,7 +27,7 @@ export default {};
 
 @media screen and (max-width: 400px) {
   .search-box {
-    max-width: 150px;
+    max-width: 200px;
   }
 }
 
@@ -46,7 +46,8 @@ export default {};
 }
 
 .search-box p {
-  font-size: 1em;
+  font-size: 1.2em;
+  font-weight: 300;
   color: var(--white);
   margin: auto;
   padding: 0;

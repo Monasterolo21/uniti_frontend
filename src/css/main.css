@@ -9,6 +9,7 @@
 	--red-ice: #FFEFEF;
   --red-ice-low-opacity: rgba(255, 240, 240, 0.3);
 	--white: #ffffff;
+  --telegram: #D9E7F9;
 }
 
 ::-webkit-scrollbar {
@@ -85,8 +86,8 @@ a:active {
 
 h1 {
 	text-transform: uppercase;
-	font-weight: 500;
-	font-size: 2.4em;
+	font-weight: 600;
+	font-size: 3em;
 	display: inline-block;
 	padding: 0;
 	margin: 0.2em 0;
@@ -95,22 +96,31 @@ h1 {
 
 h2 {
 	font-style: normal;
-	font-weight: normal;
-	font-size: 1.7em;
+	font-weight: 600;
+	font-size: 1.6em;
 	padding: 0.1em 0;
 }
 
 h3 {
 	font-style: normal;
 	font-weight: 300;
-	font-size: 1.2em;
+	font-size: 1.4em;
+	padding: 0;
+	margin: 0;
+}
+
+h4 {
+	font-style: normal;
+	font-weight: 200;
+	font-size: 1em;
 	padding: 0;
 	margin: 0;
 }
 
 p {
 	padding: 0;
-	font-size: 1.4em;
+	font-size: 1.2em;
+  font-weight: 300;
 }
 
 .panel{
