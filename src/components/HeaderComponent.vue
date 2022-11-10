@@ -56,8 +56,8 @@ export default {
 
 @media screen and (min-width: 400px) {
   .header {
-    height: 35%;
-    max-height: min(300px, 35vh);
+    height: 40%;
+    max-height: max(350px, 35vh);
   }
 }
 
@@ -85,6 +85,7 @@ export default {
   position: relative;
   top: 0;
   left: 0;
+  padding: 0 5%;
 }
 
 .subtitle {

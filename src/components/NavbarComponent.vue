@@ -1,41 +1,44 @@
 <template>
-  <nav
-    class="main-menu"
-    ref="sidebar"
-    :class="{ mobile: mobileSidebar }"
-    v-on-click-outside="closeSidebar"
-  >
-    <div class="logo-section">
-      <img src="@/assets/img/logo.png" alt="logo" />
-      <h1>UNITI</h1>
-    </div>
-    <ul>
-      <li>
-        <router-link to="/">
-          <img src="@/assets/img/homepage.png" />
-          <span class="nav-text"> Home </span>
-        </router-link>
-      </li>
-      <li>
-        <router-link to="/subscription">
-          <img src="@/assets/img/subscription.png" />
-          <span class="nav-text"> Iscrizioni </span>
-        </router-link>
-      </li>
-      <li>
-        <router-link to="/balon">
-          <img src="@/assets/img/store.png" />
-          <span class="nav-text"> Balon </span>
-        </router-link>
-      </li>
-      <li>
-        <router-link to="/friends">
-          <img src="@/assets/img/friends.png" />
-          <span class="nav-text"> Amici </span>
-        </router-link>
-      </li>
-    </ul>
-  </nav>
+  <transition name="fade">
+    <nav
+      class="main-menu"
+      ref="sidebar"
+      :class="{ mobile: mobileSidebar }"
+      v-on-click-outside="closeSidebar"
+    >
+      <div class="logo-section">
+        <img src="@/assets/img/logo.png" alt="logo" />
+        <h1>UNITI</h1>
+      </div>
+      <ul>
+        <li>
+          <router-link to="/">
+            <img src="@/assets/img/homepage.png" />
+            <span class="nav-text"> Home </span>
+          </router-link>
+        </li>
+        <li>
+          <router-link to="/subscription">
+            <img src="@/assets/img/subscription.png" />
+            <span class="nav-text"> Iscrizioni </span>
+          </router-link>
+        </li>
+        <li>
+          <router-link to="/balon">
+            <img src="@/assets/img/store.png" />
+            <span class="nav-text"> Balon </span>
+          </router-link>
+        </li>
+        <li>
+          <router-link to="/friends">
+            <img src="@/assets/img/friends.png" />
+            <span class="nav-text"> Amici </span>
+          </router-link>
+        </li>
+      </ul>
+    </nav>
+  </transition>
+  <div class="outside-click" v-if="mobileSidebar" @click="closeSidebar()"></div>
   <nav class="hamburger" @click="showSidebarMobile()">
     <div class="hamburger-menu">
       <div class="hamburger-menu__line hamburger-menu__line--1"></div>
@@ -64,7 +67,6 @@ export default {
       this.mobileSidebar = !this.mobileSidebar;
     },
     closeSidebar() {
-      alert("ciao");
       this.mobileSidebar = false;
     },
   },
@@ -92,6 +94,7 @@ export default {
   display: block;
   backdrop-filter: blur(200px);
   -webkit-backdrop-filter: blur(20px);
+  padding-top: 2em;
 }
 
 .hamburger-menu {
@@ -182,5 +185,17 @@ export default {
 
 .nav-text {
   color: var(--text-color);
+}
+
+.outside-click {
+  position: fixed;
+  top: 0;
+  left: 20%;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background: rgba(103, 102, 102, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 </style>

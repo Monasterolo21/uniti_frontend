@@ -47,7 +47,7 @@ export default {};
 
 @media screen and (max-width: 400px) {
   .search-box {
-    max-width: 70%;
+    max-width: 60%;
   }
 }
 

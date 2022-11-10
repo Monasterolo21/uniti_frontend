@@ -61,5 +61,6 @@ export default {
   flex-flow: row;
   justify-content: flex-start;
   padding: 2em;
+  overflow-x: scroll;
 }
 </style>
