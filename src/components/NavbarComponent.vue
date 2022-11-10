@@ -1,4 +1,3 @@
-// TODO: Fabio la fai tu?
 <template>
   <nav
     class="main-menu"
@@ -47,9 +46,8 @@
 </template>
 
 <script>
-// import { onClickOutside } from '@vueuse/core'
-
 export default {
+  name: "NavbarComponent",
   data() {
     return {
       mobileSidebar: false,
