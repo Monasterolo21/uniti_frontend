@@ -32,6 +32,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "friends" */ '../views/FriendsView.vue'),
     meta: { transition: 'fade'  },
   },
+  {
+    path: '/products/:id',
+    name: 'products',
+    component: () => import('@/views/ProductDetailsView.vue'),
+    meta: {transitionName: 'fade'}
+  },
 ]
 
 const router = createRouter({
