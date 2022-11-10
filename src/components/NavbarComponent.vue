@@ -1,6 +1,11 @@
 // TODO: Fabio la fai tu?
 <template>
-  <nav class="main-menu">
+  <nav
+    class="main-menu"
+    ref="sidebar"
+    :class="{ mobile: mobileSidebar }"
+    v-on-click-outside="closeSidebar"
+  >
     <div class="logo-section">
       <img src="@/assets/img/logo.png" alt="logo" />
       <h1>UNITI</h1>
@@ -32,12 +37,23 @@
       </li>
     </ul>
   </nav>
+  <nav class="hamburger" @click="showSidebarMobile()">
+    <div class="hamburger-menu">
+      <div class="hamburger-menu__line hamburger-menu__line--1"></div>
+      <div class="hamburger-menu__line hamburger-menu__line--2"></div>
+      <div class="hamburger-menu__line hamburger-menu__line--3"></div>
+    </div>
+  </nav>
 </template>
 
 <script>
+// import { onClickOutside } from '@vueuse/core'
+
 export default {
   data() {
-    return {};
+    return {
+      mobileSidebar: false,
+    };
   },
 
   computed: {},
@@ -45,6 +61,13 @@ export default {
   methods: {
     goto(path) {
       this.$router.push(path);
+    },
+    showSidebarMobile() {
+      this.mobileSidebar = !this.mobileSidebar;
+    },
+    closeSidebar() {
+      alert("ciao");
+      this.mobileSidebar = false;
     },
   },
 };
@@ -61,8 +84,49 @@ export default {
   z-index: 1;
 }
 
+.mobile {
+  min-width: 200px;
+  max-width: 300px;
+  width: 70%;
+  height: 100%;
+  background: var(--red-ice);
+  z-index: 100;
+  display: block;
+  backdrop-filter: blur(200px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.hamburger-menu {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  width: 2em;
+  height: 100%;
+  z-index: 1;
+  margin-left: 5%;
+}
+
+.hamburger-menu__line {
+  width: 100%;
+  height: 2px;
+  background: var(--primary-color);
+  margin: 6px 0;
+}
+
 @media screen and (max-width: 1000px) {
+  .main-menu:not(.mobile) {
+    display: none;
+  }
+  .hamburger {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 1000px) {
   .main-menu {
+    display: block;
+  }
+  .hamburger {
     display: none;
   }
 }
