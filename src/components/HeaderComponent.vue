@@ -74,6 +74,13 @@ export default {
   margin: auto;
 }
 
+@media screen and (max-width: 1000px) {
+  .top-position {
+    margin-left: 12%;
+    width: 80%;
+  }
+}
+
 .header-content {
   position: relative;
   top: 0;
