@@ -1,16 +1,16 @@
 <template>
   <div class="card">
     <div class="avatar">
-      <img :src="avatar" />
+      <img :src="person.avatar" />
     </div>
     <div class="name">
-      <h2>{{ name }}</h2>
+      <h2>{{ person.name }}</h2>
     </div>
     <div class="card-actions">
       <div class="card-button">
         <img src="@/assets/img/contact.png" />
       </div>
-      <div class="card-button">
+      <div class="card-button" @click="messagePerson">
         <img src="@/assets/img/message.png" />
       </div>
     </div>
@@ -20,13 +20,16 @@
 <script>
 export default {
   props: {
-    name: {
-      type: String,
+    person: {
+      type: Object,
       required: true,
     },
-    avatar: {
-      type: String,
-      required: true,
+  },
+
+  methods: {
+    messagePerson() {
+      this.$route.params.person = this.person;
+      this.$router.push("/chat");
     },
   },
 };
@@ -38,8 +41,8 @@ export default {
   padding: 1em;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   margin: 0.5em;
-  min-width: min(35%, 160px);
-  max-width: 200px;
+  min-width: min(15%, 100px);
+  max-width: 180px;
   aspect-ratio: 1/1;
   height: auto;
   color: var(--white);
@@ -71,19 +74,19 @@ export default {
 }
 
 .avatar img {
-  width: 60%;
-  height: 60%;
+  width: 70%;
+  height: 70%;
   border-radius: 100%;
   object-fit: cover;
   aspect-ratio: 1/1;
 }
 .name {
-  margin: 0.5em;
+  padding: 0.8em;
   text-align: center;
   display: block;
 }
 .name h2 {
-  font-size: 1.6em;
+  font-size: 1.8em;
   font-weight: 400;
   text-transform: capitalize;
   margin: 0;

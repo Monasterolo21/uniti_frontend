@@ -7,12 +7,7 @@
     />
     <friends-search-component />
     <div class="friends-cards">
-      <friend-card-component
-        v-for="f in friends"
-        :key="f.id"
-        :name="f.name"
-        :avatar="f.avatar"
-      />
+      <friend-card-component v-for="f in friends" :key="f.id" :person="f" />
     </div>
   </div>
 </template>
@@ -58,9 +53,9 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  flex-flow: row;
   justify-content: flex-start;
   padding: 2em;
   overflow-x: scroll;
+  justify-content: center;
 }
 </style>
