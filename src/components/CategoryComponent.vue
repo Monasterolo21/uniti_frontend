@@ -12,6 +12,7 @@
           :key="pr.id"
           :title="pr.name"
           :subtitle="pr.price"
+          @click="goToProduct(pr.id)"
         />
       </div>
     </div>
@@ -36,6 +37,9 @@ export default {
   methods: {
     filteredProducts(cat) {
       return this.products.filter((product) => product.category === cat.id);
+    },
+    goToProduct(id) {
+      this.$router.push({ name: "products", params: { id: id } });
     },
   },
 };

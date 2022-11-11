@@ -14,25 +14,36 @@
         <li>
           <router-link to="/">
             <img src="@/assets/img/homepage.png" />
-            <span class="nav-text"> Home </span>
+            <span class="nav-text" :class="{ active: isActive('/') }">
+              Home
+            </span>
           </router-link>
         </li>
         <li>
           <router-link to="/subscription">
             <img src="@/assets/img/subscription.png" />
-            <span class="nav-text"> Iscrizioni </span>
+            <span
+              class="nav-text"
+              :class="{ active: isActive('/subscription') }"
+            >
+              Iscrizioni
+            </span>
           </router-link>
         </li>
         <li>
           <router-link to="/balon">
             <img src="@/assets/img/store.png" />
-            <span class="nav-text"> Balon </span>
+            <span class="nav-text" :class="{ active: isActive('/balon') }">
+              Balon
+            </span>
           </router-link>
         </li>
         <li>
           <router-link to="/friends">
             <img src="@/assets/img/friends.png" />
-            <span class="nav-text"> Amici </span>
+            <span class="nav-text" :class="{ active: isActive('/friends') }">
+              Amici
+            </span>
           </router-link>
         </li>
       </ul>
@@ -68,6 +79,9 @@ export default {
     },
     closeSidebar() {
       this.mobileSidebar = false;
+    },
+    isActive(path) {
+      return this.$route.path === path;
     },
   },
 };
@@ -187,6 +201,10 @@ export default {
   color: var(--text-color);
 }
 
+.nav-text.active {
+  color: var(--primary-color);
+  border-bottom: 1px solid var(--primary-color);
+}
 .outside-click {
   position: fixed;
   top: 0;

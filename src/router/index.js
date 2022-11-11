@@ -33,9 +33,15 @@ const routes = [
     meta: { transition: 'fade'  },
   },
   {
-    path: '/products/:id',
+    path: '/products',
     name: 'products',
     component: () => import('@/views/ProductDetailsView.vue'),
+    meta: {transitionName: 'fade'}
+  },
+  {
+    path:'/search',
+    name:'search',
+    component: () => import('@/views/SearchView.vue'),
     meta: {transitionName: 'fade'}
   },
 ]
