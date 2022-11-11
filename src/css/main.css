@@ -12,6 +12,7 @@
   --telegram: #D9E7F9;
 	--header-gradient: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 32.29%, rgba(0, 0, 0, 0.8) 90%);
 	--grey: #B7B7B7;
+	--product-gradient: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 20%, rgba(0, 0, 0, 0.8) 90%);
 }
 
 ::-webkit-scrollbar {
