@@ -44,6 +44,12 @@ const routes = [
     component: () => import('@/views/SearchView.vue'),
     meta: {transitionName: 'fade'}
   },
+  {
+    path:'/profile',
+    name:'profile',
+    component: () => import('@/views/ProfileView.vue'),
+    meta: {transitionName: 'fade'}
+  }
 ]
 
 const router = createRouter({

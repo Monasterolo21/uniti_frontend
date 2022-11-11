@@ -10,7 +10,7 @@
   --red-ice-low-opacity: rgba(255, 240, 240, 0.3);
 	--white: #ffffff;
   --telegram: #D9E7F9;
-	--header-gradient: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 32.29%, rgba(0, 0, 0, 0.8) 90%);
+	--header-gradient: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 24%, rgba(0, 0, 0, 0.9) 90%);
 	--grey: #B7B7B7;
 	--product-gradient: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 20%, rgba(0, 0, 0, 0.8) 90%);
 	--search-background: linear-gradient(223.84deg, rgba(36, 38, 39, 0.9) 3.6%, rgba(0, 0, 0, 0.9) 45.84%);
