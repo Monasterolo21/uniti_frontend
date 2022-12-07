@@ -27,6 +27,12 @@ export default {
 .messages {
   margin: auto;
   max-width: 90%;
-  padding: 2% 0 25% 0;
+  padding: 2% 0 8% 0;
+}
+
+@media screen and (max-width: 749px) {
+  .messages {
+    padding-bottom: 20%;
+  }
 }
 </style>

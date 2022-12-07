@@ -49,6 +49,12 @@ const routes = [
     name:'profile',
     component: () => import('@/views/ProfileView.vue'),
     meta: {transitionName: 'fade'}
+  },
+  {
+    path:'/group',
+    name:'group',
+    component: () => import('@/views/GroupDetailsView.vue'),
+    meta: {transitionName: 'fade'}
   }
 ]
 

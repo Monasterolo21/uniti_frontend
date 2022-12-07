@@ -50,5 +50,18 @@ export default {
       ],
     };
   },
+
+  mounted() {
+    this.scrollToBottom();
+  },
+
+  methods: {
+    scrollToBottom() {
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth",
+      });
+    },
+  },
 };
 </script>

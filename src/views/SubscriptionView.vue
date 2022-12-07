@@ -13,6 +13,7 @@
           :key="ba.id"
           :title="ba.name"
           :subtitle="ba.tag"
+          @click="goToGroup(ba.id)"
         />
       </div>
     </div>
@@ -78,6 +79,11 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    goToGroup(id) {
+      this.$router.push({ name: "group", params: { id: id } });
+    },
   },
 };
 </script>
