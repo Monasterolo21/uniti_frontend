@@ -55,6 +55,18 @@ const routes = [
     name:'group',
     component: () => import('@/views/GroupDetailsView.vue'),
     meta: {transitionName: 'fade'}
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/LoginPage.vue'),
+    meta: { transition: 'fade'  },
+  },
+  {
+    path: '/error',
+    name: 'error',
+    component: () => import('@/views/ErrorView.vue'),
+    meta: { transition: 'fade'  },
   }
 ]
 
