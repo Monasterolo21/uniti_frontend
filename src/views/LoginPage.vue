@@ -4,27 +4,18 @@
       <div class="login-page__container__logo">
         <img src="@/assets/img/logo.png" alt="logo" />
       </div>
-      <button-component text="Accedi" @primaryClick="this.login" />
+      <button @click="login">Login Using Google</button>
     </div>
   </div>
 </template>
 
-<script>
-import ButtonComponent from "@/components/ButtonComponent.vue";
-export default {
-  components: { ButtonComponent },
-  data() {
-    return {};
-  },
-  methods: {
-    async login() {
-      const res = await fetch("http://localhost:8080/login", {
-        method: "GET",
-      });
-      const code = await res.json();
-      console.log(code);
-    },
-  },
+<script setup>
+// https://yobaji.github.io/vue3-google-login/#custom-login-button-1
+import { googleAuthCodeLogin } from "vue3-google-login";
+const login = () => {
+  googleAuthCodeLogin().then((response) => {
+    console.log("Handle the response", response);
+  });
 };
 </script>
 
