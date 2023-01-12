@@ -11,10 +11,28 @@
 
 <script setup>
 // https://yobaji.github.io/vue3-google-login/#custom-login-button-1
-import { googleAuthCodeLogin } from "vue3-google-login";
+// https://stackoverflow.com/questions/359472/how-can-i-verify-a-google-authentication-api-access-token
+import { googleTokenLogin } from "vue3-google-login";
+import router from "@/router";
+
 const login = () => {
-  googleAuthCodeLogin().then((response) => {
-    console.log("Handle the response", response);
+  googleTokenLogin().then(async (response) => {
+    // console.log("Handle the response", response);
+    const res = await fetch(
+      "https://www.googleapis.com/oauth2/v3/userinfo?access_token=" +
+        response.access_token,
+      {
+        method: "GET",
+      }
+    );
+    const user = await res.json();
+    console.log(user);
+    if (user.hd === "edu.unito.it") {
+      alert("Benvenuto " + user.name);
+      router.push("/");
+    } else {
+      alert("Non sei autorizzato a accedere a questa applicazione");
+    }
   });
 };
 </script>
