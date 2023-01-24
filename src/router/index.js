@@ -53,7 +53,7 @@ const routes = [
   {
     path:'/group',
     name:'group',
-    component: () => import('@/views/GroupDetailsView.vue'),
+    component: () => import('@/views/BachecaView.vue'),
     meta: {transitionName: 'fade'}
   },
   {

@@ -25,6 +25,7 @@
           :key="gr.id"
           :title="gr.name"
           :subtitle="gr.tag"
+          @click="goToGroup(gr)"
         />
       </div>
     </div>
@@ -81,8 +82,9 @@ export default {
     };
   },
   methods: {
-    goToGroup(id) {
-      this.$router.push({ name: "group", params: { id: id } });
+    goToGroup() {
+      this.$route.params.group = this.group;
+      this.$router.push("/group");
     },
   },
 };
