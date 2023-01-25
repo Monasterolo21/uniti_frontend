@@ -116,9 +116,12 @@ export default {
   top: 30px;
   left: 0;
   width: 2em;
-  height: 100%;
+  /* height: 100%; */
   z-index: 1;
   margin-left: 5%;
+  background: var(--secondary-color);
+  padding: 1%;
+  border-radius: 0.5em;
 }
 
 .hamburger-menu__line {

@@ -7,7 +7,7 @@
   >
     <div class="top-position">
       <SearchComponent />
-      <AvatarComponent />
+      <AvatarComponent class="av-com"/>
     </div>
     <div class="header-content">
       <h1>{{ title }}</h1>
@@ -90,5 +90,9 @@ export default {
 
 .subtitle {
   color: var(--white);
+}
+.av-com {
+  margin-left: 5%;
+  margin-right: 5%;
 }
 </style>
