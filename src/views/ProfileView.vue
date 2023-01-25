@@ -1,10 +1,13 @@
 <template>
   <div class="panel">
     <header-component
-      title="Profile"
-      subtitle="Guarda quello che le persone pubblicano su UNITI"
+      :title="'Profilo di ' + this.user.name"
+      subtitle="Ecco le tue informazioni presenti su UNITI"
       background="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60"
     />
+    <p>Puoi modificare le tue informazioni cliccandoci sopra, cambiandone il valore, e cliccando 
+      <span class="fb">SALVA</span>
+    </p>
     <div class="edit-panel">
       <div class="field">
         <div class="title">Foto:</div>
@@ -37,15 +40,15 @@
         <div class="title">Bio:</div>
         <input class="value" contenteditable="true" type="text" v-model="bio" />
       </div>
-      <div class="field">
-        <div class="title">Email:</div>
-        <input
-          class="value"
-          contenteditable="true"
-          type="text"
-          v-model="email"
-        />
+      
+      <div style="width: 100%;">
+        <div class="field">
+          <div class="title">Email:</div>
+          <div class="value">{{ this.user.email }}</div>      
+        </div>
+        <p>(Email <span class="fb">NON</span> modificabile)</p>
       </div>
+
     </div>
     <button-component text="Salva" @primaryClick="save()" />
   </div>
@@ -55,6 +58,7 @@
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import ButtonComponent from "@/components/ButtonComponent.vue";
 import { mapGetters } from "vuex";
+import store from "@/store";
 
 export default {
   name: "HomeView",
@@ -64,15 +68,22 @@ export default {
     return {
       nome: "nome",
       cognome: "cognome",
-      bio: "bio",
-      email: "email",
+      bio: "bio",      
     };
   },
 
   methods: {
     save() {
-      alert(this.nome + " " + this.cognome + " " + this.bio + " " + this.email);
+      //alert(this.nome + " " + this.cognome + " " + this.bio + " ");
       // alert("save");
+      
+      var newUser = Object.assign({}, this.user);
+      newUser.name = this.nome;
+      newUser.surname = this.surname;
+      newUser.bio = this.bio;
+      // console.log(this.user)
+      // console.log(newUser)
+      store.dispatch('editUser',newUser);
     },
   },
 
@@ -83,7 +94,10 @@ export default {
   },
 
   mounted() {
-    //console.log(this.user)
+    this.nome = this.user.name;
+    this.cognome = this.user.surname;
+    this.bio = this.user.bio;
+    console.log(this.user.urlPicture)
   },
 };
 </script>
@@ -137,5 +151,8 @@ export default {
 .edit-panel .field .edit-icon {
   width: 1em;
   height: 1em;
+}
+.fb {
+  font-weight: bold;
 }
 </style>

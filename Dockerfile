@@ -23,4 +23,8 @@ RUN npm run build
 EXPOSE 8080
 CMD [ "http-server", "dist" ]
 
+
+
+# docker build -t vue-app .
+
 #docker run -p 5050:8080 vue-app

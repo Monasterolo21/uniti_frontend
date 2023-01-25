@@ -93,6 +93,22 @@ export default new Vuex.Store({
         console.error(errors);
         console.log(state);
       }
+    },
+
+    async editUser(state, user) {
+      const BASE_URL = 'http://localhost:8080/api/users/getAllTest';
+      //const BASE_URL = 'http://localhost:8080/api/users/getAll';
+
+      try {
+        //const response = await axios.get(`${BASE_URL}`);    
+        const response = await axios.post(`${BASE_URL}`, { params : {param : 'Ciao ciao ciao ciao ciao!!!!'} });    
+        const userr = response.data;    
+        console.log(userr);  
+      } catch (errors) {
+        console.error(errors);
+        console.log(state);
+        console.log(user);
+      }
     }
   }
 });
