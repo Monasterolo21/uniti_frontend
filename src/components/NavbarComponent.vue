@@ -119,7 +119,6 @@ export default {
   /* height: 100%; */
   z-index: 1;
   margin-left: 5%;
-  background: var(--secondary-color);
   padding: 1%;
   border-radius: 0.5em;
 }
@@ -174,7 +173,7 @@ export default {
   padding: 2em 2em;
   margin: auto;
   float: left;
-  width: 100%;
+  width: 60%;
   text-align: left;
 }
 
