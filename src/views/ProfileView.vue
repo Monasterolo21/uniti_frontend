@@ -17,19 +17,34 @@
       </div>
       <div class="field">
         <div class="title">Nome:</div>
-        <div class="value" contenteditable="true">prova nome</div>
+        <input
+          class="value"
+          contenteditable="true"
+          type="text"
+          v-model="nome"
+        />
       </div>
       <div class="field">
         <div class="title">Cognome:</div>
-        <div class="value" contenteditable="true">prova cognome</div>
+        <input
+          class="value"
+          contenteditable="true"
+          type="text"
+          v-model="cognome"
+        />
       </div>
       <div class="field">
         <div class="title">Bio:</div>
-        <div class="value" contenteditable="true">prova bio}</div>
+        <input class="value" contenteditable="true" type="text" v-model="bio" />
       </div>
       <div class="field">
         <div class="title">Email:</div>
-        <div class="value" contenteditable="true">prova email</div>
+        <input
+          class="value"
+          contenteditable="true"
+          type="text"
+          v-model="email"
+        />
       </div>
     </div>
     <button-component text="Salva" @primaryClick="save()" />
@@ -44,9 +59,20 @@ import { mapGetters } from "vuex";
 export default {
   name: "HomeView",
   components: { HeaderComponent, ButtonComponent },
+
+  data() {
+    return {
+      nome: "nome",
+      cognome: "cognome",
+      bio: "bio",
+      email: "email",
+    };
+  },
+
   methods: {
     save() {
-      alert("save");
+      alert(this.nome + " " + this.cognome + " " + this.bio + " " + this.email);
+      // alert("save");
     },
   },
 
@@ -104,6 +130,9 @@ export default {
   font-size: 1.2em;
   font-weight: 400;
   color: var(--text-color);
+  border: none;
+  text-align: right;
+  float: right;
 }
 .edit-panel .field .edit-icon {
   width: 1em;
