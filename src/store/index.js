@@ -1,11 +1,14 @@
 import Vuex from "vuex"
 import createPersistedState from 'vuex-persistedstate'
+import axios from "axios";
 
 export default new Vuex.Store({
   plugins: [createPersistedState({
     storage: window.sessionStorage,
 })],
   state:{
+    user : null,
+
     categories: [],
     subcategories: [],
     firstCategory: '',
@@ -13,16 +16,25 @@ export default new Vuex.Store({
     userEmail: '',
     isLogged:false,
     currentPosition: {},
-    backEndLink: "http://localhost:8080/",
+    backEndLink: "http://localhost:8094/",
   },
 
   getters:{
+    getUser : state => state.user,
+
+
     isLogged: state => {
       return state.isLogged
     }
   },
 
   mutations:{ // Syncronus
+    setUser(state, payload) {
+      state.user = payload;
+    },
+
+
+
     setCategories(state, payload){
       state.categories = payload;
     },
@@ -66,5 +78,21 @@ export default new Vuex.Store({
     async setCurrentPosition(state, payload){
       state.commit("setPos", payload.pos);
     },
+
+
+    async getUserByID(state, email) {
+      const BASE_URL = 'http://localhost:8080/api/users/getUser/';
+      try {
+        const response = await axios.get(`${BASE_URL}` + email,);    
+        const user = response.data;    
+        console.log(user);  
+        state.commit("setUser", user);
+        return user;
+
+      } catch (errors) {
+        console.error(errors);
+        console.log(state);
+      }
+    }
   }
 });

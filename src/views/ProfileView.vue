@@ -17,8 +17,22 @@
       </div>
       <div class="field">
         <div class="title">Nome:</div>
-        <div class="value">Mario Rossi</div>
+        <div class="value">prova nome</div>
         <img class="edit-icon" src="@/assets/img/edit.png" />
+      </div>
+      <div class="field">
+        <div class="title">Cognome:</div>
+        <div class="value">prova cognome</div>
+        <img class="edit-icon" src="@/assets/img/edit.png" />
+      </div>
+      <div class="field">
+        <div class="title">Bio:</div>
+        <div class="value">prova bio}</div>
+        <img class="edit-icon" src="@/assets/img/edit.png" />
+      </div>
+      <div class="field">
+        <div class="title">Email:</div>
+        <div class="value">prova email</div>        
       </div>
     </div>
     <button-component text="Salva" @primaryClick="save()" />
@@ -28,6 +42,7 @@
 <script>
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import ButtonComponent from "@/components/ButtonComponent.vue";
+import { mapGetters } from 'vuex'
 
 export default {
   name: "HomeView",
@@ -37,6 +52,16 @@ export default {
       alert("save");
     },
   },
+
+  computed: {
+    ...mapGetters({
+      user: 'getUser'
+    })
+  },
+
+  mounted() {
+    //console.log(this.user)
+  }
 };
 </script>
 

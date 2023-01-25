@@ -14,6 +14,7 @@
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import MessagesComponent from "@/components/MessagesComponent.vue";
 import InputBarComponent from "@/components/InputBarComponent.vue";
+//import store from "@/store";
 
 export default {
   components: { HeaderComponent, MessagesComponent, InputBarComponent },
@@ -56,5 +57,9 @@ export default {
       ],
     };
   },
+
+  mounted() {
+    //store.dispatch('getUserByID','giulia.frumento@gmail.com');
+  }
 };
 </script>
