@@ -23,9 +23,9 @@
       </div>
       <button-component
         text="Acquista"
-        @primaryClick="this.buyProduct"
+        @main="this.buyProduct"
         secondary-text="Cancella"
-        @secondaryClick="this.goBack"
+        @second="this.goBack"
       />
     </div>
   </div>

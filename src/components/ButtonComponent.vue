@@ -1,12 +1,12 @@
 // TODO: solve click not working problem
 <template>
   <div class="buttons">
-    <div class="button" @click="$emit('primaryClick')">
+    <div class="button" @click="mainClick()">
       <p>{{ text }}</p>
     </div>
     <div
       class="button alternative"
-      @click="$emit('secondaryClick')"
+      @click="secondaryClick()"
       v-if="secondaryText"
     >
       <p>{{ secondaryText }}</p>
@@ -26,6 +26,16 @@ export default {
       required: false,
     },
   },
+
+  methods: {
+    mainClick() {
+      alert("ciao");
+      this.$emit("main");
+    },
+    secondaryClick() {
+      this.$emit("secondary");
+    },
+  },
 };
 </script>
 
@@ -36,7 +46,7 @@ export default {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
+  margin: 1em auto;
   width: 100%;
   max-width: 600px;
 }
@@ -50,6 +60,8 @@ export default {
   max-width: 200px;
   max-height: 50px;
   margin-bottom: 10%;
+  vertical-align: middle;
+  margin: 1em auto;
 }
 .button p {
   color: var(--white);

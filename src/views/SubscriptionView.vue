@@ -29,17 +29,18 @@
         />
       </div>
     </div>
-    <add-button-component />
+    <!-- Commented for the demo -->
+    <!-- <add-button-component /> -->
   </div>
 </template>
 
 <script>
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import CardComponent from "@/components/CardComponent.vue";
-import AddButtonComponent from "@/components/AddButtonComponent.vue";
+// import AddButtonComponent from "@/components/AddButtonComponent.vue";
 
 export default {
-  components: { HeaderComponent, CardComponent, AddButtonComponent },
+  components: { HeaderComponent, CardComponent /* AddButtonComponent */ },
   name: "BalonView",
 
   data() {

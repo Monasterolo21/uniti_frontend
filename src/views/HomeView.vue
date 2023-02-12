@@ -5,6 +5,7 @@
       subtitle="Guarda quello che le persone pubblicano su UNITI"
       background="https://images.unsplash.com/photo-1532622785990-d2c36a76f5a6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
     />
+    <switch-category-component />
     <messages-component :messages="messages" />
     <input-bar-component text="Scrivi nella home" />
   </div>
@@ -14,10 +15,16 @@
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import MessagesComponent from "@/components/MessagesComponent.vue";
 import InputBarComponent from "@/components/InputBarComponent.vue";
+import SwitchCategoryComponent from "@/components/SwitchCategoryComponent.vue";
 import store from "@/store";
 
 export default {
-  components: { HeaderComponent, MessagesComponent, InputBarComponent },
+  components: {
+    HeaderComponent,
+    MessagesComponent,
+    InputBarComponent,
+    SwitchCategoryComponent,
+  },
   name: "HomeView",
 
   data() {
@@ -57,9 +64,9 @@ export default {
       ],
     };
   },
-  
+
   mounted() {
-    store.dispatch('getUserByEmail','giulia.frumento@gmail.com');
-  }
+    store.dispatch("getUserByEmail", "giulia.frumento@gmail.com");
+  },
 };
 </script>

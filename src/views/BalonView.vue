@@ -6,17 +6,18 @@
       background="https://images.unsplash.com/photo-1555876484-a71a693b161b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
     />
     <category-component :products="products" :categories="categories" />
-    <add-button-component />
+    <!-- Commented for the demo -->
+    <!-- <add-button-component /> -->
   </div>
 </template>
 
 <script>
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import CategoryComponent from "@/components/CategoryComponent.vue";
-import AddButtonComponent from "@/components/AddButtonComponent.vue";
+// import AddButtonComponent from "@/components/AddButtonComponent.vue";
 
 export default {
-  components: { HeaderComponent, CategoryComponent, AddButtonComponent },
+  components: { HeaderComponent, CategoryComponent /*AddButtonComponent*/ },
   name: "BalonView",
 
   data() {

@@ -25,7 +25,7 @@ export default {
 
 <style>
 .messages {
-  margin: auto;
+  margin: 0 auto;
   max-width: 90%;
   padding: 2% 0 8% 0;
 }
