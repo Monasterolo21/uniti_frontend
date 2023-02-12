@@ -57,9 +57,9 @@ export default {
       ],
     };
   },
-
+  
   mounted() {
-    store.dispatch('getUserByID','giulia.frumento@gmail.com');
+    store.dispatch('getUserByEmail','giulia.frumento@gmail.com');
   }
 };
 </script>

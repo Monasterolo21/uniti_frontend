@@ -5,49 +5,53 @@
       subtitle="Ecco le tue informazioni presenti su UNITI"
       background="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60"
     />
-    <p>Puoi modificare le tue informazioni cliccandoci sopra, cambiandone il valore, e cliccando 
+    <p>Puoi modificare le tue informazioni cliccandoci sopra, cambiandone il valore, e cliccando il pulsante
       <span class="fb">SALVA</span>
     </p>
     <div class="edit-panel">
-      <div class="field">
+        <div class="field">
         <div class="title">Foto:</div>
         <div class="user-image">
-          <img
+            <img v-if="this.user.urlPicture"
             src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60"
-          />
+            />
+            <img v-if="!this.user.urlPicture" src="@/assets/img/person.png"/>
         </div>
         <img class="edit-icon" src="@/assets/img/edit.png" />
-      </div>
-      <div class="field">
+        </div>
+        <div class="field">
         <div class="title">Nome:</div>
         <input
-          class="value"
-          contenteditable="true"
-          type="text"
-          v-model="nome"
+            class="value"
+            contenteditable="true"
+            type="text"
+            v-model="nome"
         />
-      </div>
-      <div class="field">
-        <div class="title">Cognome:</div>
-        <input
-          class="value"
-          contenteditable="true"
-          type="text"
-          v-model="cognome"
-        />
-      </div>
-      <div class="field">
-        <div class="title">Bio:</div>
-        <input class="value" contenteditable="true" type="text" v-model="bio" />
-      </div>
-      
-      <div style="width: 100%;">
-        <div class="field">
-          <div class="title">Email:</div>
-          <div class="value">{{ this.user.email }}</div>      
         </div>
-        <p>(Email <span class="fb">NON</span> modificabile)</p>
-      </div>
+        <div class="field">
+            <div class="title">Cognome:</div>
+            <input
+                class="value"
+                contenteditable="true"
+                type="text"
+                v-model="cognome"
+            />
+        </div>
+
+        <div style="width: 100%;">
+            <div class="field">
+                <div class="title">Bio:</div>
+                <input class="value" contenteditable="true" type="text" v-model="bio" />
+            </div>            
+        </div>
+      
+        <div style="width: 100%;">
+            <div class="field">
+            <div class="title">Email:</div>
+            <div class="value">{{ this.user.email }}</div>      
+            </div>
+            <p>(Email <span class="fb">NON</span> modificabile)</p>
+        </div>
 
     </div>
     <button-component text="Salva" @primaryClick="save()" />
@@ -74,15 +78,14 @@ export default {
 
   methods: {
     save() {
-      //alert(this.nome + " " + this.cognome + " " + this.bio + " ");
-      // alert("save");
-      
       var newUser = Object.assign({}, this.user);
       newUser.name = this.nome;
-      newUser.surname = this.surname;
+      newUser.surname = this.cognome;
       newUser.bio = this.bio;
-      // console.log(this.user)
-      // console.log(newUser)
+      console.log('------------')
+      console.log(this.user)
+      console.log(newUser)
+      console.log('------------')
       store.dispatch('editUser',newUser);
     },
   },
@@ -97,7 +100,6 @@ export default {
     this.nome = this.user.name;
     this.cognome = this.user.surname;
     this.bio = this.user.bio;
-    console.log(this.user.urlPicture)
   },
 };
 </script>
@@ -131,7 +133,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: min(80%, 400px);
+  max-width: min(100%, 900px);
   margin: 1em auto;
   width: 100%;
 }
@@ -143,6 +145,7 @@ export default {
 .edit-panel .field .value {
   font-size: 1.2em;
   font-weight: 400;
+  width: 100%;
   color: var(--text-color);
   border: none;
   text-align: right;

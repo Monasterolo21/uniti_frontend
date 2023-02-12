@@ -49,7 +49,7 @@ export default {
   background-color: var(--primary-color);
   max-width: 200px;
   max-height: 50px;
-  margin: 5% auto;
+  margin-bottom: 10%;
 }
 .button p {
   color: var(--white);

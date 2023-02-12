@@ -8,7 +8,10 @@ export default new Vuex.Store({
 })],
   state:{
     user : null,
-
+    BASE_URL : 'http://localhost:8080/api/',
+    Path : {
+        users : 'users/'
+    },
     categories: [],
     subcategories: [],
     firstCategory: '',
@@ -16,7 +19,6 @@ export default new Vuex.Store({
     userEmail: '',
     isLogged:false,
     currentPosition: {},
-    backEndLink: "http://localhost:8094/",
   },
 
   getters:{
@@ -64,51 +66,34 @@ export default new Vuex.Store({
   },
 
   actions: { // Async
-    async login(state){
-      const user = await fetch(this.getters.getBackEndLink+"/login", 
-      {
-        method: "GET"
-      });
-      const u = await user.json();
-      console.log(u);
-      state.commit("setUserEmail", u['email']);
-      return u.length;
-    },
 
-    async setCurrentPosition(state, payload){
-      state.commit("setPos", payload.pos);
-    },
-
-
-    async getUserByID(state, email) {
-      const BASE_URL = 'http://localhost:8080/api/users/getUser/';
+    async getUserByEmail({commit}, email) {
       try {
-        const response = await axios.get(`${BASE_URL}` + email,);    
+        const url = this.state.BASE_URL + this.state.Path.users;
+        const response = await axios.get(url + 'getUser/' + email);    
         const user = response.data;    
         console.log(user);  
-        state.commit("setUser", user);
+        commit("setUser", user);
         return user;
 
       } catch (errors) {
         console.error(errors);
-        console.log(state);
+        return null;
       }
     },
 
-    async editUser(state, user) {
-      const BASE_URL = 'http://localhost:8080/api/users/getAllTest';
-      //const BASE_URL = 'http://localhost:8080/api/users/getAll';
-
-      try {
-        //const response = await axios.get(`${BASE_URL}`);    
-        const response = await axios.post(`${BASE_URL}`, { params : {param : 'Ciao ciao ciao ciao ciao!!!!'} });    
-        const userr = response.data;    
-        console.log(userr);  
-      } catch (errors) {
-        console.error(errors);
-        console.log(state);
-        console.log(user);
-      }
+    async editUser({commit}, userEdited) {
+        try {
+            const url = this.state.BASE_URL + this.state.Path.users;
+            const response = await axios.post(url + 'editUserInfo/', userEdited); 
+            const user = response.data;
+            console.log(user);  
+            commit("setUser", user);
+            return user;
+        } catch(errors) {
+            console.error(errors);
+            return null;
+        }
     }
   }
 });
