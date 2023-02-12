@@ -30,7 +30,7 @@ export default {
   methods: {
     mainClick() {
       alert("ciao");
-      this.$emit("main");
+      this.$emit("mainClick");
     },
     secondaryClick() {
       this.$emit("secondary");

@@ -1,19 +1,40 @@
 <template>
   <div class="input-bar">
-    <input
+    <!-- <input
       type="text"
       placeholder="Scrivi un messaggio..."
       v-model="message"
       @keyup.enter="sendMessage"
-    />
-    <div class="send-button">
+    /> -->
+    <textarea type="text" v-model="message" placeholder="Scrivi un messaggio...">
+
+    </textarea>
+    <div class="send-button" @click="send">
       <img src="@/assets/img/send.png" />
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+// import store from "@/store";
+import { mapGetters } from "vuex";
+
+export default {
+  methods : {
+    send() {
+      console.log(this.message);
+  
+    }
+  },
+
+
+  computed: {
+    ...mapGetters({
+      user: "getUser",
+      homeContent: "getHomeContent",
+    }),
+  },
+};
 </script>
 
 <style scoped>
@@ -40,7 +61,7 @@ export default {};
   bottom: 2%;
   left: 5%;
   width: 80%;
-  height: 3.5em;
+  height: 4.5em;
   margin: auto;
   background: var(--red-ice-low-opacity);
   z-index: 1;
@@ -51,6 +72,8 @@ export default {};
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-radius: 20px;
+  border: solid;
+  border-width: 1px;
 }
 
 @media screen and (min-width: 1000px) {
@@ -60,15 +83,22 @@ export default {};
   }
 }
 
-.input-bar input {
+/* .input-bar input { */
+.input-bar textarea {
   width: 80%;
-  height: 100%;
+  height: 70%;
+  /* max-width: 80%;
+  min-width: 80%;
+  min-height: 70%;
+  max-height: 70%; */
+  resize: none;
   border: none;
   outline: none;
   background: transparent;
   color: var(--text-color);
   font-size: 1.2em;
   font-weight: 300;
+  font-family: 'Raleway', sans-serif;
 }
 
 .input-bar .send-button {

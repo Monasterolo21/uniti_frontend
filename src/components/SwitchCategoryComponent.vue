@@ -47,7 +47,7 @@ export default {
   border-radius: 0.5rem;
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
   margin: 0.5em auto;
-  background: ;
+  /* background: ; */
 }
 .switch-category .category {
   display: flex;

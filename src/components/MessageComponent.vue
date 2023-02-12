@@ -2,20 +2,20 @@
   <div class="message" :class="{ telegram: message.telegram }">
     <div class="message-header">
       <div class="message-info">
-        <h4>{{ message.name }}</h4>
+        <h4>{{ message.owneremail }}</h4>
       </div>
       <div class="avatar">
-        <img :src="message.avatar" />
+        <img :src="messageAvatar"/>
       </div>
     </div>
     <div class="message-title">
       <h2>{{ message.title }}</h2>
     </div>
     <div class="message-content">
-      <p>{{ message.content }}</p>
+      <p>{{ message.description }}</p>
     </div>
     <div class="message-footer">
-      <h4>{{ message.date }}</h4>
+      <h4>{{ msgDate }}</h4>
     </div>
   </div>
 </template>
@@ -28,6 +28,23 @@ export default {
       required: true,
     },
   },
+
+  computed: {
+    msgDate() {
+      let d = new Date(this.message.dateTime);
+      return d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear() + ' - ' + d.getHours() + ':' + d.getMinutes();
+    },
+
+    messageAvatar() {
+      return require('@/assets/img/person' + this.getRandomInt(8).toString() + '.png');
+    },
+  },
+
+  methods : {
+    getRandomInt(max) {
+        return Math.floor(Math.random() * max);
+    }
+  }
 };
 </script>
 

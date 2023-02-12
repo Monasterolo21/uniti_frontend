@@ -3,7 +3,7 @@
     <header-component
       :title="'Profilo di ' + this.user.name"
       subtitle="Ecco le tue informazioni presenti su UNITI"
-      background="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60"
+      :background="backgroundUrl"
     />
     <p>Puoi modificare le tue informazioni cliccandoci sopra, cambiandone il valore, e cliccando il pulsante
       <span class="fb">SALVA</span>
@@ -12,10 +12,9 @@
         <div class="field">
         <div class="title">Foto:</div>
         <div class="user-image">
-            <img v-if="this.user.urlPicture"
-            src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60"
+            <img :src="logoUrl"
             />
-            <img v-if="!this.user.urlPicture" src="@/assets/img/person.png"/>
+            <!-- <img v-if="!this.user.urlPicture" src="@/assets/img/person.png"/> -->
         </div>
         <img class="edit-icon" src="@/assets/img/edit.png" />
         </div>
@@ -44,6 +43,13 @@
                 <input class="value" contenteditable="true" type="text" v-model="bio" />
             </div>            
         </div>
+
+        <div style="width: 100%;">
+            <div class="field2">
+                <div class="title">Url Foto profilo:</div>
+                <input class="value" contenteditable="true" type="text" :placeholder="picUrl" v-model="urlPicture" />
+            </div>            
+        </div>
       
         <div style="width: 100%;">
             <div class="field">
@@ -54,7 +60,7 @@
         </div>
 
     </div>
-    <button-component text="Salva" @primaryClick="save()" />
+    <button-component text="Salva" @mainClick="save()" />
   </div>
 </template>
 
@@ -72,16 +78,19 @@ export default {
     return {
       nome: "nome",
       cognome: "cognome",
-      bio: "bio",      
+      bio: "bio",   
+      urlPicture : "url",   
     };
   },
 
   methods: {
     save() {
+
       var newUser = Object.assign({}, this.user);
       newUser.name = this.nome;
       newUser.surname = this.cognome;
       newUser.bio = this.bio;
+      newUser.urlPicture = this.urlPicture;
       console.log('------------')
       console.log(this.user)
       console.log(newUser)
@@ -94,12 +103,27 @@ export default {
     ...mapGetters({
       user: "getUser",
     }),
+
+    picUrl() {
+      return this.user.urlPicture === null ? 'Nessun URL' : this.user.urlPicture;
+    },
+
+    backgroundUrl() {
+      return this.user.urlPicture !== null ? this.user.urlPicture : 
+      'https://images.unsplash.com/photo-1492681290082-e932832941e6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1742&q=80'
+    },
+
+    logoUrl() {
+      return this.user.urlPicture === null ? require('@/assets/img/person0.png') : this.user.urlPicture;
+    }
   },
+
 
   mounted() {
     this.nome = this.user.name;
     this.cognome = this.user.surname;
     this.bio = this.user.bio;
+    this.urlPicture = this.user.urlPicture;
   },
 };
 </script>
@@ -137,10 +161,25 @@ export default {
   margin: 1em auto;
   width: 100%;
 }
+.edit-panel .field2 {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  max-width: min(100%, 900px);
+  margin: 1em auto;
+  width: 100%;
+}
 .edit-panel .field .title {
   font-size: 1.4em;
   font-weight: 600;
   color: var(--primary-color);
+}
+.edit-panel .field2 .title {
+  font-size: 1.4em;
+  font-weight: 600;
+  color: var(--primary-color);
+  text-align: left;
 }
 .edit-panel .field .value {
   font-size: 1.2em;
@@ -151,7 +190,20 @@ export default {
   text-align: right;
   float: right;
 }
+.edit-panel .field2 .value {
+  font-size: 1.2em;
+  font-weight: 400;
+  width: 100%;
+  color: var(--text-color);
+  border: none;
+  text-align: right;
+  float: right;
+}
 .edit-panel .field .edit-icon {
+  width: 1em;
+  height: 1em;
+}
+.edit-panel .field2 .edit-icon {
   width: 1em;
   height: 1em;
 }

@@ -1,8 +1,5 @@
 <template>
   <div class="avatar" @click="gotoProfile()">
-    <!-- <img v-if="this.user.urlPicture"
-            src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60"
-            /> -->
     <img :src="this.image"/>
   </div>
 </template>
@@ -19,7 +16,7 @@ export default {
   },
 
   mounted() {
-    console.log(this.user)
+    //console.log(this.user)
   },
 
   computed: {
@@ -27,15 +24,8 @@ export default {
       user: "getUser",
     }),
     image() {
-      if(this.user !== null) {
-        if(this.user.urlPicture !== null)
-          return "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60"
-        else
-        return require("@/assets/img/person.png");
-      }
-      else {
-        return require("@/assets/img/person.png");
-      }
+      return this.user === null || this.user.urlPicture === null ? 
+        require('@/assets/img/person0.png') : this.user.urlPicture;
     }
   },
 
