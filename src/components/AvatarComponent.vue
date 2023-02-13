@@ -1,7 +1,12 @@
 <template>
-  <div class="avatar" @click="gotoProfile()">
-    <img :src="this.image"/>
-  </div>
+    <div class="avatar-container" @click="gotoProfile()">
+        <div class="avatar">
+            <img :src="this.image"/>
+        </div>
+        <div>
+            <p class="name-avatar" v-if="user">{{ userFullName }}</p>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -12,6 +17,7 @@ export default {
   methods: {
     gotoProfile() {
       this.$router.push("/profile");
+      console.log('profile')
     },
   },
 
@@ -23,6 +29,9 @@ export default {
     ...mapGetters({
       user: "getUser",
     }),
+    userFullName() {
+      return !this.user ? undefined : this.user.name;
+    },
     image() {
       return this.user === null || this.user.urlPicture === null ? 
         require('@/assets/img/person0.png') : this.user.urlPicture;
@@ -34,6 +43,9 @@ export default {
 </script>
 
 <style>
+.avatar-container:hover {
+  cursor: pointer;
+}
 .avatar {
   width: 2.5em;
   height: 2.5em;
@@ -45,5 +57,11 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.name-avatar {
+  color: white;
+  z-index: 1 !important;
+  text-decoration: underline;
 }
 </style>

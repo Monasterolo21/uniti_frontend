@@ -14,7 +14,7 @@
         <li>
           <router-link to="/">
             <img src="@/assets/img/homepage.png" />
-            <span class="nav-text" :class="{ active: isActive('/') }">
+            <span class="nav-text" :class="{ active: isActive('home') }">
               Home
             </span>
           </router-link>
@@ -24,7 +24,7 @@
             <img src="@/assets/img/subscription.png" />
             <span
               class="nav-text"
-              :class="{ active: isActive('/subscription') }"
+              :class="{ active: isActive('subscription') || isActive('group') }"
             >
               Iscrizioni
             </span>
@@ -33,7 +33,7 @@
         <li>
           <router-link to="/balon">
             <img src="@/assets/img/store.png" />
-            <span class="nav-text" :class="{ active: isActive('/balon') }">
+            <span class="nav-text" :class="{ active: isActive('balon') }">
               Balon
             </span>
           </router-link>
@@ -41,7 +41,7 @@
         <li>
           <router-link to="/friends">
             <img src="@/assets/img/friends.png" />
-            <span class="nav-text" :class="{ active: isActive('/friends') }">
+            <span class="nav-text" :class="{ active: isActive('friends') }">
               Amici
             </span>
           </router-link>
@@ -80,8 +80,8 @@ export default {
     closeSidebar() {
       this.mobileSidebar = false;
     },
-    isActive(path) {
-      return this.$route.path === path;
+    isActive(name) {
+      return this.$route.name === name;
     },
   },
 };

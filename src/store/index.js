@@ -13,10 +13,12 @@ export default new Vuex.Store({
   state:{
     user : null,
 
-    home_content : null,
-    home_content_ID : 1,
+    home_contents : null,
+    home_board_ID : 1,
 
     unito_boards : null,
+    current_unito_board : null,
+    current_unito_board_contents : null,
 
     BASE_URL : 'http://localhost:8080/api/',
     Path : {
@@ -40,12 +42,19 @@ export default new Vuex.Store({
   getters:{
     getUser : state => state.user,
     getHomeContent : state => {
-        if(!state.home_content)
+        if(!state.home_contents)
             return [];
         else
-            return state.home_content.sort((a,b) => b.id - a.id);
+            return state.home_contents.sort((a,b) => b.id - a.id);
     },
     getUnitoBoards : state => state.unito_boards,
+    getCurrentBoard : state => state.current_unito_board,
+    getUnitoBoardContents : state => {
+        if(!state.current_unito_board_contents)
+            return [];
+        else
+            return state.current_unito_board_contents.sort((a,b) => b.id - a.id);
+    },
 
 
 
@@ -55,6 +64,8 @@ export default new Vuex.Store({
     }
   },
 
+
+
   mutations:{ // Syncronus
 
     setUser(state, payload) {
@@ -62,11 +73,23 @@ export default new Vuex.Store({
     },
 
     setHomeContent(state, payload) {
-      state.home_content = payload;
+      state.home_contents = payload;
+      console.log('Added to Home')
     },
 
     setUnitoBoards(state, payload) {
         state.unito_boards = payload;
+        //console.log(state.unito_boards)
+    },
+
+    setCurrentUnitoBoard(state, payload) {
+        state.current_unito_board = payload;
+        //console.log(state.current_unito_board);
+    },
+
+    setUnitoBoardsContents(state, payload) {
+        state.current_unito_board_contents = payload;
+        console.log('Added to unitoBoardsContent')
     },
 
 
@@ -131,16 +154,23 @@ export default new Vuex.Store({
             return null;
         }
     },
-
-    async getHomeContent({commit}) {
+    
+    /**
+     * 
+     * @param {*} param0 {commit} to commit the mutation
+     * @param {*} id of the board. The default id is 1 (the Home Board ID)
+     * @returns the contents of the board with id = id
+     */
+    async getContentsByBoard({commit}, id = this.state.home_board_ID) {
       try {
         const url = this.state.BASE_URL + this.state.Path.contents;
-        const response = await axios.get(url + 'getAllByBoard', {
-          params : { board_id : this.state.home_content_ID}
-        }); 
+        const response = await axios.get(url + 'getAllByBoard/' + id); 
         const contents = response.data;
         console.log(contents)
-        commit('setHomeContent',contents);
+        if(id === this.state.home_board_ID)
+            commit('setHomeContent',contents);
+        else
+            commit('setUnitoBoardsContents',contents);
         return contents;
       } catch(errors) {
           console.log(errors);
@@ -157,6 +187,24 @@ export default new Vuex.Store({
             commit('setUnitoBoards',boards);
         } catch(errors) {
             console.log(errors)
+        }
+    },
+
+    async postNewContent({commit}, { content, board_id} ) {
+        try {
+            const url = this.state.BASE_URL + this.state.Path.contents;
+            const response = await axios.post(url + 'createContent',content, {
+                params : {
+                    board_id : board_id
+                }
+            })
+
+            const newContent = response.data;
+            
+            return newContent;
+            
+        } catch(errors) {
+            console.log(commit);
         }
     }
   }

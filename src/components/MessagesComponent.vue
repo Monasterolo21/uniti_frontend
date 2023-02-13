@@ -2,9 +2,10 @@
   <div class="content-panel">
     <div class="messages">
       <message-component
-        v-for="message in messages"
+        v-for="(message,index) in messages"
         :message="message"
         :key="message.id"
+        :index="index"
       />
     </div>
   </div>

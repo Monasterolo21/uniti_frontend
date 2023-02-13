@@ -54,7 +54,16 @@ export default {
   left: 0;
 }
 
+@media screen and (max-width: 800px) {
+  .header-content h1 {
+    font-size: 1.5em;
+  }
+}
+
+
 @media screen and (min-width: 400px) {
+
+
   .header {
     height: 40%;
     max-height: max(350px, 35vh);
@@ -91,7 +100,7 @@ export default {
 .subtitle {
   color: var(--white);
 }
-.av-com {
+.av-com { 
   margin-left: 5%;
   margin-right: 5%;
 }

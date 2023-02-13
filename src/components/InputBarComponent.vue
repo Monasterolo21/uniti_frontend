@@ -1,41 +1,93 @@
 <template>
-  <div class="input-bar">
-    <!-- <input
-      type="text"
-      placeholder="Scrivi un messaggio..."
-      v-model="message"
-      @keyup.enter="sendMessage"
-    /> -->
-    <textarea type="text" v-model="message" placeholder="Scrivi un messaggio...">
+    <div class="input-bar">
+        <!-- <input
+            type="text"
+            placeholder="Scrivi un messaggio..."
+            v-model="message"
+            @keyup.enter="sendMessage"
+        /> -->
+        <textarea type="text" v-model="message" placeholder="Scrivi un messaggio...">
+        </textarea>
 
-    </textarea>
-    <div class="send-button" @click="send">
-      <img src="@/assets/img/send.png" />
+        <div class="send-button" @click="send">
+            <img src="@/assets/img/send.png" />
+        </div>
     </div>
-  </div>
 </template>
 
+/*
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  
+ */
+
 <script>
-// import store from "@/store";
+import store from "@/store";
 import { mapGetters } from "vuex";
 
 export default {
-  methods : {
-    send() {
-      console.log(this.message);
-  
-    }
-  },
+
+    data() {
+        return {
+            message : undefined,
+        }
+    },
+
+    methods : {
+        send() {
+            if(!this.message)
+                return;
+            let msg = this.message.split(/\n(.*)/s);
+            let board_id = undefined;
+
+            switch(this.$route.name) {
+                case 'home': {
+                    board_id = 1;
+                    break;
+                }
+                case 'group': {
+                    let tmp = this.$route.params.id;
+                    board_id = parseInt(tmp);
+                    break;
+                }
+            }
+
+            if(board_id) {
+                let content = {
+                    owneremail : this.user.email,
+                    title : msg[0],
+                    description : msg[1] ? msg[1] : null,
+                }
+                const x = store.dispatch('postNewContent', {
+                    content,
+                    board_id
+                });
+                x.then((r) => {
+                    console.log(r);
+                    if(r) {
+                        console.log('aaaaa');
+                        this.message = undefined;
+                    }
+                })
+            }
+        }
+    },
 
 
-  computed: {
-    ...mapGetters({
-      user: "getUser",
-      homeContent: "getHomeContent",
-    }),
-  },
+    computed: {
+        ...mapGetters({
+        user: "getUser",
+        homeContent: "getHomeContent",
+        }),
+    },
 };
 </script>
+
+/*
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  
+ */
 
 <style scoped>
 ::placeholder {

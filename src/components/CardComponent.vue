@@ -51,8 +51,14 @@ export default {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
+.card {
+  /* word-wrap: break-word; */
+overflow-wrap: break-word;
+}
 
 .card h2 {
+  width: 100%;
+  max-width: 100%;
   font-size: 1.4em;
   font-weight: 600;
   text-transform: uppercase;
@@ -72,7 +78,7 @@ export default {
   transition: 0.2s;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 700px) {
   .card h2 {
     font-size: 1.1em;
     font-weight: 600;
