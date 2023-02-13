@@ -15,6 +15,15 @@
           :subtitle="ba.tag"
           @click="goToGroup(ba.id)"
         />
+        
+            <!-- <CardComponent 
+                v-for="b in boards"
+                :key="b.id"
+                :title="b.name"
+                :subtitle="b.description"
+                @click="goToGroup(b.id)"
+            /> -->
+
       </div>
     </div>
     <div class="subclass-horizontal-cards">
@@ -37,10 +46,11 @@
 <script>
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import CardComponent from "@/components/CardComponent.vue";
-// import AddButtonComponent from "@/components/AddButtonComponent.vue";
+import store from "@/store";
+import { mapGetters } from "vuex";
 
 export default {
-  components: { HeaderComponent, CardComponent /* AddButtonComponent */ },
+  components: { HeaderComponent, CardComponent },
   name: "BalonView",
 
   data() {
@@ -48,18 +58,18 @@ export default {
       board: [
         {
           id: 1,
-          name: "Matematica",
-          tag: "#matematica",
+          name: "Bacheca Dipartimentale Informatica Informaticaaaaaaaaaaaaaa",
+          tag: "Bacheca dipartimentale ufficiale di Matematica",
         },
         {
           id: 2,
-          name: "Fisica",
-          tag: "#fisica",
+          name: "Bacheca Dipartimentale Informatica",
+          tag: "Bacheca dipartimentale ufficiale di Matematica",
         },
         {
           id: 3,
-          name: "Informatica",
-          tag: "#informatica",
+          name: "Bacheca Dipartimentale Informatica",
+          tag: "Bacheca dipartimentale ufficiale di Matematica",
         },
       ],
 
@@ -82,12 +92,22 @@ export default {
       ],
     };
   },
-  methods: {
-    goToGroup() {
-      this.$route.params.group = this.group;
-      this.$router.push("/group");
+    methods: {
+        goToGroup() {
+            this.$route.params.group = this.group;
+            this.$router.push("/group");
+        },
     },
-  },
+
+    mounted() {
+        store.dispatch('getAllUnitoBoards');
+    },
+
+    computed : {
+        ...mapGetters({
+            boards: "getUnitoBoards",
+    }),
+    }
 };
 </script>
 

@@ -12,12 +12,17 @@ export default new Vuex.Store({
   ],
   state:{
     user : null,
+
     home_content : null,
     home_content_ID : 1,
+
+    unito_boards : null,
+
     BASE_URL : 'http://localhost:8080/api/',
     Path : {
         users : 'users/',
         contents : 'contents/',
+        boards : 'boards/'
     },
 
 
@@ -35,12 +40,15 @@ export default new Vuex.Store({
   getters:{
     getUser : state => state.user,
     getHomeContent : state => {
-      if(!state.home_content)
-        return [];
-      else
-        return state.home_content.sort((a,b) => b.id - a.id);
+        if(!state.home_content)
+            return [];
+        else
+            return state.home_content.sort((a,b) => b.id - a.id);
     },
-    //employees.sort((a, b) => b.age - a.age);
+    getUnitoBoards : state => state.unito_boards,
+
+
+
 
     isLogged: state => {
       return state.isLogged
@@ -48,12 +56,17 @@ export default new Vuex.Store({
   },
 
   mutations:{ // Syncronus
+
     setUser(state, payload) {
       state.user = payload;
     },
 
     setHomeContent(state, payload) {
       state.home_content = payload;
+    },
+
+    setUnitoBoards(state, payload) {
+        state.unito_boards = payload;
     },
 
 
@@ -133,6 +146,18 @@ export default new Vuex.Store({
           console.log(errors);
           return null;
       }
+    },
+
+    async getAllUnitoBoards({commit}) {
+        try {
+            const url = this.state.BASE_URL + this.state.Path.boards;
+            const response = await axios.get(url + 'getAll');
+            const boards = response.data;
+            console.log(boards);
+            commit('setUnitoBoards',boards);
+        } catch(errors) {
+            console.log(errors)
+        }
     }
   }
 });

@@ -46,18 +46,17 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
 }
 
 .card h2 {
   font-size: 1.6em;
   font-weight: 600;
   text-transform: uppercase;
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 .card h3 {
-  font-size: 1.2em;
+  font-size: 1.3em;
   font-weight: 400;
   margin: 0;
   padding: 0;

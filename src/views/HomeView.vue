@@ -6,8 +6,8 @@
       background="https://images.unsplash.com/photo-1532622785990-d2c36a76f5a6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
     />
     <switch-category-component />
-    <messages-component v-if="homeContent" :messages="homeContent" />
-    <!-- <messages-component v-if="homeContent" :messages="messages" /> -->
+    <!-- <messages-component v-if="homeContent" :messages="homeContent" /> -->
+    <messages-component v-if="homeContent" :messages="messages" />
     <input-bar-component text="Scrivi nella home" />
   </div>
 </template>
@@ -85,7 +85,6 @@ export default {
   },
 
   mounted() {
-    /* const user = */ 
     store.dispatch("getUserByEmail", "giulia.frumento@edu.unito.it");
     //fabio.ferrero111@edu.unito.it
     
@@ -97,7 +96,6 @@ export default {
     // })
 
     store.dispatch('getHomeContent');
-    //store.commit('setUser','fabio');
   },
 };
 </script>
