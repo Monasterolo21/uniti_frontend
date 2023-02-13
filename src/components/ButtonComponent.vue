@@ -29,7 +29,6 @@ export default {
 
   methods: {
     mainClick() {
-      alert("ciao");
       this.$emit("mainClick");
     },
     secondaryClick() {
@@ -40,6 +39,9 @@ export default {
 </script>
 
 <style>
+.buttons:hover {
+  cursor: pointer;
+}
 .buttons {
   display: flex;
   flex-direction: row;

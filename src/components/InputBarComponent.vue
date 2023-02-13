@@ -35,8 +35,10 @@ export default {
 
     methods : {
         send() {
-            if(!this.message)
+            if(!this.message) {
+                this.alertError();
                 return;
+            }
             let msg = this.message.split(/\n(.*)/s);
             let board_id = undefined;
 
@@ -62,14 +64,39 @@ export default {
                     content,
                     board_id
                 });
-                x.then((r) => {
-                    console.log(r);
-                    if(r) {
-                        console.log('aaaaa');
+                x.then((newContent) => {
+                    console.log(newContent);
+                    if(newContent) {
+                        this.alertSuccess();
+                        store.commit('addNewContentPusblished', {newContent, board_id});
                         this.message = undefined;
                     }
+                    else
+                        this.alertError();                
                 })
             }
+        },
+
+        alertSuccess() {
+            this.$swal({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Complimenti! Il tuo Post ora è pubblico!',
+                showConfirmButton: false,
+                timer: 2000,
+                toast : false, 
+            });
+        },
+
+        alertError() {
+            this.$swal({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Qualcosa è andato storto! Ricorda che devi inserire del testo!',
+                showConfirmButton: false,
+                timer: 2000,
+                toast : false, 
+            });
         }
     },
 

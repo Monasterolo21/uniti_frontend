@@ -11,7 +11,7 @@
           v-for="pr in products"
           :key="pr.id"
           :title="pr.name"
-          :subtitle="pr.price"
+          :subtitle="pr.price.toString()"
           @click="goToProduct(pr.id)"
         />
       </div>

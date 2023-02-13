@@ -20,7 +20,8 @@ export default new Vuex.Store({
     current_unito_board : null,
     current_unito_board_contents : null,
 
-    BASE_URL : 'http://localhost:8080/api/',
+    // BASE_URL : 'http://localhost:8080/api/',
+    BASE_URL : 'http://192.168.1.186:8080/api/',
     Path : {
         users : 'users/',
         contents : 'contents/',
@@ -90,6 +91,13 @@ export default new Vuex.Store({
     setUnitoBoardsContents(state, payload) {
         state.current_unito_board_contents = payload;
         console.log('Added to unitoBoardsContent')
+    },
+
+    addNewContentPusblished(state, {newContent, board_id} ) {
+        if(board_id === state.home_board_ID)
+            state.home_contents.push(newContent);
+        else
+            state.current_unito_board_contents.push(newContent);
     },
 
 
@@ -199,7 +207,7 @@ export default new Vuex.Store({
                 }
             })
 
-            const newContent = response.data;
+            const newContent = response.data;            
             
             return newContent;
             

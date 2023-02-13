@@ -21,6 +21,12 @@ const routes = [
     meta: { transition: 'fade'  },
   },
   {
+    path: '/createads',
+    name: 'createads',
+    component: () => import(/* webpackChunkName: "balon" */ '../views/BalonCreateView.vue'),
+    meta: { transition: 'fade'  },
+  },
+  {
     path: '/subscription',
     name: 'subscription',
     component: () => import(/* webpackChunkName: "subscription" */ '../views/SubscriptionView.vue'),
