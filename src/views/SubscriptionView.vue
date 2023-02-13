@@ -15,15 +15,14 @@
           :subtitle="ba.tag"
           @click="goToGroup(ba.id)"
         />
-        
-            <!-- <CardComponent 
+
+        <!-- <CardComponent 
                 v-for="b in boards"
                 :key="b.id"
                 :title="b.name"
                 :subtitle="b.description"
                 @click="goToGroup(b.id)"
             /> -->
-
       </div>
     </div>
     <div class="subclass-horizontal-cards">
@@ -58,7 +57,7 @@ export default {
       board: [
         {
           id: 1,
-          name: "Bacheca Dipartimentale Informatica Informaticaaaaaaaaaaaaaa",
+          name: "Bacheca Dipartimentale Informatica Informatica",
           tag: "Bacheca dipartimentale ufficiale di Matematica",
         },
         {
@@ -92,22 +91,22 @@ export default {
       ],
     };
   },
-    methods: {
-        goToGroup() {
-            this.$route.params.group = this.group;
-            this.$router.push("/group");
-        },
+  methods: {
+    goToGroup() {
+      this.$route.params.group = this.group;
+      this.$router.push("/group");
     },
+  },
 
-    mounted() {
-        store.dispatch('getAllUnitoBoards');
-    },
+  mounted() {
+    store.dispatch("getAllUnitoBoards");
+  },
 
-    computed : {
-        ...mapGetters({
-            boards: "getUnitoBoards",
+  computed: {
+    ...mapGetters({
+      boards: "getUnitoBoards",
     }),
-    }
+  },
 };
 </script>
 

@@ -46,19 +46,45 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 .card h2 {
-  font-size: 1.6em;
+  font-size: 1.4em;
   font-weight: 600;
   text-transform: uppercase;
   padding: 0;
   margin: 0;
 }
 .card h3 {
-  font-size: 1.3em;
+  font-size: 1.2em;
   font-weight: 400;
   margin: 0;
   padding: 0;
+}
+
+.card:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: 0.2s;
+}
+
+@media screen and (max-width: 400px) {
+  .card h2 {
+    font-size: 1.1em;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 0;
+    margin: 0;
+  }
+  .card h3 {
+    font-size: 0.8em;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+  }
 }
 </style>
