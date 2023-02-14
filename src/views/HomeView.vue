@@ -93,6 +93,7 @@ export default {
 
     mounted() {
         store.dispatch("getUserByEmail", "giulia.frumento@edu.unito.it");
+        //giulia.frumento@edu.unito.it
         //fabio.ferrero111@edu.unito.it
         
         // user.then((user_value) => {
@@ -103,6 +104,7 @@ export default {
         // })
 
         store.dispatch('getContentsByBoard');
+        store.dispatch('getBalonCategories');
     },
 };
 </script>

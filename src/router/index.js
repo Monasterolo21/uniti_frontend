@@ -39,7 +39,7 @@ const routes = [
     meta: { transition: 'fade'  },
   },
   {
-    path: '/products',
+    path: '/products/:id',
     name: 'products',
     component: () => import('@/views/ProductDetailsView.vue'),
     meta: {transitionName: 'fade'}

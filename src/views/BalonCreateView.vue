@@ -14,6 +14,7 @@
                     contenteditable="true"
                     placeholder="Titolo" 
                     type="text"
+                    maxlength="30"
                     v-model="title"                    
                 />
             </div>
@@ -35,7 +36,8 @@
                     class="value"
                     contenteditable="true"
                     placeholder="Prezzo" 
-                    type="text"    
+                    type="text"
+                    maxlength="6"    
                     v-model="price"                
                 />
             </div>
@@ -45,12 +47,12 @@
                 <select
                     v-model="category"
                     class="value"
-                    placeholder="cat"
-                    type="text"                
+                    placeholder="cat"           
                 >
-                    <option>A</option>
+                    <option v-for="(c,index) in balon_categories" :key="index">{{ c.name }}</option>
+                    <!-- <option>A</option>
                     <option>B</option>
-                    <option>C</option>
+                    <option>C</option> -->
                 </select>
             </div>
     </div>
@@ -67,6 +69,8 @@
 <script>
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import ButtonComponent from "@/components/ButtonComponent.vue";
+import store from "@/store";
+import { mapGetters } from "vuex";
 
 export default {
     components: { HeaderComponent, ButtonComponent },
@@ -135,15 +139,73 @@ export default {
             title : '',
             description : '',
             price : '',
-            category : '',
+            category : 'Altro',
         }
     },
 
     methods : {
+
+        resetValues() {
+            this.title = '',
+            this.description = '',
+            this.price = '',
+            this.category = 'Altro'
+        },
+
         publish() {
-            alert(this.title + '\n' + this.description + '\n' + this.price + '\n' + this.category);
+            const priceNumber = parseFloat(this.price)
+            if(!this.title || !this.description || !priceNumber) {
+                this.alertError();
+                return;
+            }        
+            const ads = {
+                owneremail : this.user.email,
+                title : this.title,
+                description : this.description,
+                price : priceNumber,                
+            }
+            const category = this.category;    
+            //alert(this.title + '\n' + this.description + '\n' + this.price + '\n' + this.category);
+            const x = store.dispatch('createNewAds', { ads, category })
+            x.then((r) => {
+                if(r) {
+                    this.alertSuccess();
+                    this.resetValues();
+                }
+                else
+                    this.alertError();
+            })
+        },
+
+        alertSuccess() {
+            this.$swal({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Complimenti! Il tuo Post ora è pubblico!',
+                showConfirmButton: false,
+                timer: 2000,
+                toast : false, 
+            });
+        },
+
+        alertError() {
+            this.$swal({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Qualcosa è andato storto! Ricorda che ogni campo deve essere inserito!',
+                showConfirmButton: false,
+                timer: 2000,
+                toast : false, 
+            });
         }
-    }
+    },
+
+    computed: {
+        ...mapGetters({
+            user: "getUser",
+            balon_categories: "getBalonCategories",
+        }),
+    },
 };
 </script>
 

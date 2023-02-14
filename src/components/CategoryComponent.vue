@@ -1,18 +1,18 @@
 <template>
   <div class="subclass-list">
     <div
-      class="subclass-horizontal-cards"
-      v-for="cat in categories"
-      :key="cat.id"
-    >
-      <h1>{{ cat.name }}</h1>
+      class="subclass-horizontal-cards">
+      <h1>{{ categories.name }}</h1>
+
       <div class="card-group">
-        <CardComponent
+        <CardComponentSale
           v-for="pr in products"
           :key="pr.id"
-          :title="pr.name"
+          :title="pr.title"
+          :available="pr.active"
           :subtitle="pr.price.toString()"
-          @click="goToProduct(pr.id)"
+          :owner="pr.owneremail"
+          @click="goToProduct(pr)"
         />
       </div>
     </div>
@@ -20,26 +20,26 @@
 </template>
 
 <script>
-import CardComponent from "@/components/CardComponent.vue";
+import CardComponentSale from "@/components/CardComponentSale.vue";
+import store from "@/store";
 
 export default {
-  components: { CardComponent },
+  components: { CardComponentSale },
   props: {
     categories: {
-      type: Array,
-      required: true,
+      // type: Array,
+      // required: true,
     },
     products: {
       type: Array,
-      required: true,
+      // required: true,
     },
   },
   methods: {
-    filteredProducts(cat) {
-      return this.products.filter((product) => product.category === cat.id);
-    },
-    goToProduct(id) {
-      this.$router.push({ name: "products", params: { id: id } });
+
+    goToProduct(pr) {
+      store.commit('setSelectedBalonAds',pr);
+      this.$router.push({ name: "products", params: { id: pr.id } });
     },
   },
 };
@@ -49,7 +49,7 @@ export default {
 .subclass-list {
   margin: auto;
   max-width: 100%;
-  padding: 2% 0 25% 0;
+  /* padding: 2% 0 25% 0; */
 }
 .subclass-horizontal-cards {
   padding: 1em 0 1em 3%;

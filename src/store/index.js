@@ -19,13 +19,18 @@ export default new Vuex.Store({
     unito_boards : null,
     current_unito_board : null,
     current_unito_board_contents : null,
+    
+    balon_categories : null,
+    balon_saleAds : null,
+    selected_balon_ads : null,
 
-    // BASE_URL : 'http://localhost:8080/api/',
-    BASE_URL : 'http://192.168.1.186:8080/api/',
+    BASE_URL : 'http://localhost:8080/api/',
+    // BASE_URL : 'http://192.168.1.186:8080/api/',
     Path : {
         users : 'users/',
         contents : 'contents/',
-        boards : 'boards/'
+        boards : 'boards/',
+        balon : 'saleads/'
     },
 
 
@@ -56,6 +61,15 @@ export default new Vuex.Store({
         else
             return state.current_unito_board_contents.sort((a,b) => b.id - a.id);
     },
+    getBalonCategories : state => state.balon_categories.sort((a,b) => b.id - a.id),
+    getBalonSaleAds : state => {
+        if(!state.balon_saleAds)
+            return [];
+        else
+            return state.balon_saleAds.sort((a,b) => b.id - a.id);
+    },
+    getSelectedBalonAds : state => state.selected_balon_ads,
+    
 
 
 
@@ -99,6 +113,33 @@ export default new Vuex.Store({
         else
             state.current_unito_board_contents.push(newContent);
     },
+
+    setBalonCategories(state,payload) {
+        state.balon_categories = payload;
+        console.log(state.balon_categories);
+    },
+
+    setBalonSaleAds(state, payload) {
+        state.balon_saleAds = payload;
+        console.log(state.balon_saleAds);
+    },
+
+    pushNewAds(state, payload) {
+        state.balon_saleAds.push(payload);
+    },
+
+    setSelectedBalonAds(state, payload) {
+        state.selected_balon_ads = payload;
+    },
+
+    changeActiveToSelectedAds(state, payload) {
+        state.balon_saleAds.find(e => e.id === payload.id);
+    },
+
+
+
+
+
 
 
 
@@ -214,6 +255,62 @@ export default new Vuex.Store({
         } catch(errors) {
             console.log(commit);
         }
-    }
+    },
+
+    async getBalonCategories({commit}) {
+        try {
+            const url = this.state.BASE_URL + this.state.Path.balon;
+            const response = await axios.get(url + 'getAllCategories');
+            const categories = response.data;
+            commit('setBalonCategories',categories);
+        } catch(errors) {
+            console.log(errors);
+        }
+    },
+
+    async getBalonSaleAds({commit}) {
+        try {
+            const url = this.state.BASE_URL + this.state.Path.balon;
+            const response = await axios.get(url + 'getAll');
+            const ads = response.data;
+            commit('setBalonSaleAds',ads);
+        } catch(errors) {
+            console.log(errors);
+        }
+    },
+
+    async createNewAds({commit}, {ads,category}) {
+        try {
+            const url = this.state.BASE_URL + this.state.Path.balon;
+            const response = await axios.post(url + 'createAds', ads, {
+                params : {
+                    category : category
+                }
+            });    
+            const new_ads = response.data;
+            commit('pushNewAds', new_ads);
+            return new_ads;
+        } catch(errors) {            
+            return null;
+        }
+    },
+
+    async changeActiveAds({commit}, {id,active}) {
+        try {
+            const url = this.state.BASE_URL + this.state.Path.balon;
+            const response = await axios.post(url + 'changeActiveStatus/' + id, null ,{
+                params : {
+                    active : active
+                }
+            });    
+            const new_ads = response.data;
+            commit('changeActiveToSelectedAds', new_ads);
+            return new_ads;
+        } catch(errors) {            
+            return null;
+        }
+    },
+
+
   }
 });
