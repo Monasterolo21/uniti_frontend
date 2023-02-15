@@ -24,8 +24,8 @@ export default new Vuex.Store({
     balon_saleAds : null,
     selected_balon_ads : null,
 
-    BASE_URL : 'http://localhost:8080/api/',
-    // BASE_URL : 'http://192.168.1.186:8080/api/',
+    //BASE_URL : 'http://localhost:8080/api/',
+    BASE_URL : 'http://192.168.1.186:8080/api/',
     Path : {
         users : 'users/',
         contents : 'contents/',

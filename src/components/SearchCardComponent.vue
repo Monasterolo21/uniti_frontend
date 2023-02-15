@@ -7,7 +7,8 @@
       <div class="empty-primary-color-box"></div>
     </div>
     <div class="search-card_content">
-      <h3>{{ result.name }}</h3>
+      <h3 v-if="result.name">{{ result.name }}</h3>
+      <h3 v-if="result.title">{{ result.title }}</h3>
       <p>{{ result.description }}</p>
     </div>
   </div>

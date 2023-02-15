@@ -71,4 +71,7 @@ export default {
   width: 100%;
   overflow-x: scroll;
 }
+element::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari, and Opera */
+}
 </style>

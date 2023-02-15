@@ -1,3 +1,33 @@
+<!-- <template>
+    <div>
+        <h1>Ciao</h1>
+        <h1>Ciao</h1>
+        <h1>Ciao</h1>
+        <h1>Ciao</h1>
+        <button @click="go">ciao</button>
+    </div>
+</template> -->
+
+<!-- <script>
+import router from "@/router";
+export default {
+    name : 'TestVieww',
+    methods : {
+        go() {
+            router.push('/home')
+        }
+    }
+}
+</script> -->
+
+/**
+ * ******** ******** ******** ******** ******** ******** ******** ******** ******** ******** ******** *******
+ * ******** ******** ******** ******** ******** ******** ******** ******** ******** ******** ******** *******
+ * ******** ******** ******** ******** ******** ******** ******** ******** ******** ******** ******** *******
+ * ******** ******** ******** ******** ******** ******** ******** ******** ******** ******** ******** *******
+ * ******** ******** ******** ******** ******** ******** ******** ******** ******** ******** ******** *******
+ */
+
  <template>
     <div class="login-container">
         <div class="login-top-panel">
@@ -9,12 +39,8 @@
         </div>
         <div class="login-bottom-panel">
             <div class="container-logo-unito">
-                <div class="img-cnt">
-                    <img src="@/assets/img/unito.png" alt="logo" class="img-unito" />
-                </div>
-                <div class="img-cnt">
-                    <img src="@/assets/img/logo.png" alt="logo" class="img-logo" />
-                </div>
+                <img src="@/assets/img/unito.png" alt="logo" class="img-unito" />
+                <img src="@/assets/img/logo.png" alt="logo" class="img-logo" />
             </div>
         </div>
         <div>
@@ -58,7 +84,9 @@ export default {
     },
 
     methods : {
-
+        // go() {
+        //     router.push('/home')
+        // },
         go() {
             googleTokenLogin().then(async (response) => {
 
@@ -70,8 +98,7 @@ export default {
                 const user = await res.json();
 
                 if (user.hd === "edu.unito.it") {
-                    //alert("Benvenuto " + user.name);
-                    console.log(user);                
+                    alert("Benvenuto " + user.name);
                     router.push('/home')
                 } else {
                     this.$swal({
@@ -87,6 +114,36 @@ export default {
         }
     }
 }
+
+// const log = () => {
+//     router.push("/home");
+// }
+
+// const login = () => {
+//   googleTokenLogin().then(async (response) => {
+
+//     const res = await fetch(
+//         "https://www.googleapis.com/oauth2/v3/userinfo?access_token=" + response.access_token, {
+//             method: "GET",
+//         }
+//     );
+//     const user = await res.json();
+//     // console.log(user);
+//     if (user.hd === "edu.unito.it") {
+//         alert("Benvenuto " + user.name);
+//         router.push("/home");
+//     } else {
+//         this.$swal({
+//             position: 'top-end',
+//             icon: 'error',
+//             title: 'Ci spiace, solo gli utenti facenti parte dell\'Università degli Studi di Torino possono accedere a questa piattaforma',
+//             showConfirmButton: false,
+//             timer: 2000,
+//             toast : false, 
+//         });
+//     }
+//   });
+// };
 
 </script>
 
@@ -133,7 +190,7 @@ export default {
 
 .container-logo-unito {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     width: 100%;
     max-width: 400px;
     max-height: 400px;
@@ -166,7 +223,7 @@ export default {
     margin-top: 1.5%;
     margin-bottom: 1%;
     border-radius: 0;
-    padding: 1%;
+    padding: .5%;
     border: none;
 }
 
@@ -186,41 +243,58 @@ export default {
 
 @media screen and (max-width: 1000px) {
     .title-uniti {
-        font-size: 400%;
+        font-size: 500%;
     }
     .subtitle-uniti {
-        font-size: 120%;
+        font-size: 150%;
     }
-    .container-logo-unito {
-        display: block;
-    }
-    .container-logo-unito .img-unito{
-        width: 50%;
-        margin-top: 5%;
-        margin-bottom: 5%;
-    }
-    .container-logo-unito .img-logo{
-        width: 20%;
-    }
-    .img-cnt {
-        width: 100%;
-    }
-
-    #google {
-        margin-top: 10%;
-     }
-
-    /* .container-logo-unito {
-        
-        width: 100%;
-    }
-    .container-logo-unito .img-unito{
-        width: 50%;
-    }
-    .container-logo-unito .img-logo{
-        width: 20%;
-    } */
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.login-page {
+    background-color: var(--white);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: aqua;
+}
+
+.login-page__container {
+    border-radius: 1rem;
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: red;
+}
+
+.login-page__container__logo {
+    width: 100%;
+    max-width: 200px;
+    margin-bottom: 2rem;
+}
+
+.login-page__container__logo img {
+    width: 100%;
+}
 </style>

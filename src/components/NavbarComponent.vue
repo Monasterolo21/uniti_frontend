@@ -12,7 +12,7 @@
       </div>
       <ul>
         <li>
-          <router-link to="/">
+          <router-link to="/home">
             <img src="@/assets/img/homepage.png" />
             <span class="nav-text" :class="{ active: isActive('home') }">
               Home

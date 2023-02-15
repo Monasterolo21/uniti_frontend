@@ -2,84 +2,93 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
 const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView,
-    meta: { transition: 'fade'  },
-  },
-  {// TODO: Dynamic route
-    path: '/chat',
-    name: 'chat',
-    component: () => import(/* webpackChunkName: "chat" */ '../views/ChatView.vue'),
-    meta: { transition: 'fade'  },
-  },
-  {
-    path: '/balon',
-    name: 'balon',
-    component: () => import(/* webpackChunkName: "balon" */ '../views/BalonView.vue'),
-    meta: { transition: 'fade'  },
-  },
-  {
-    path: '/createads',
-    name: 'createads',
-    component: () => import(/* webpackChunkName: "balon" */ '../views/BalonCreateView.vue'),
-    meta: { transition: 'fade'  },
-  },
-  {
-    path: '/subscription',
-    name: 'subscription',
-    component: () => import(/* webpackChunkName: "subscription" */ '../views/SubscriptionView.vue'),
-    meta: { transition: 'fade'  },
-  },
-  {
-    path: '/friends',
-    name: 'friends',
-    component: () => import(/* webpackChunkName: "friends" */ '../views/FriendsView.vue'),
-    meta: { transition: 'fade'  },
-  },
-  {
-    path: '/products/:id',
-    name: 'products',
-    component: () => import('@/views/ProductDetailsView.vue'),
-    meta: {transitionName: 'fade'}
-  },
-  {
-    path:'/search',
-    name:'search',
-    component: () => import('@/views/SearchView.vue'),
-    meta: {transitionName: 'fade'}
-  },
-  {
-    path:'/profile',
-    name:'profile',
-    component: () => import('@/views/ProfileView.vue'),
-    meta: {transitionName: 'fade'}
-  },
-  {
-    // path:'/group',
-    path: '/group/:id',
-    name:'group',
-    component: () => import('@/views/BachecaView.vue'),
-    meta: {transitionName: 'fade'}
-  },
-  {
-    path: '/login',
-    name: 'login',
-    component: () => import('@/views/LoginPage.vue'),
-    meta: { transition: 'fade'  },
-  },
-  {
-    path: '/error',
-    name: 'error',
-    component: () => import('@/views/ErrorView.vue'),
-    meta: { transition: 'fade'  },
-  }
+    {
+        path: '/test',
+        name: 'test',
+        component: () => import(/* webpackChunkName: "chat" */ '../views/TestView.vue'),
+        meta: { transition: 'fade'  },
+    },
+    {
+        path: '/home',
+        name: 'home',
+        component: HomeView,
+        meta: { transition: 'fade'  },
+    },
+    {// TODO: Dynamic route
+        path: '/chat',
+        name: 'chat',
+        component: () => import(/* webpackChunkName: "chat" */ '../views/ChatView.vue'),
+        meta: { transition: 'fade'  },
+    },
+    {
+        path: '/balon',
+        name: 'balon',
+        component: () => import(/* webpackChunkName: "balon" */ '../views/BalonView.vue'),
+        meta: { transition: 'fade'  },
+    },
+    {
+        path: '/createads',
+        name: 'createads',
+        component: () => import(/* webpackChunkName: "balon" */ '../views/BalonCreateView.vue'),
+        meta: { transition: 'fade'  },
+    },
+    {
+        path: '/subscription',
+        name: 'subscription',
+        component: () => import(/* webpackChunkName: "subscription" */ '../views/SubscriptionView.vue'),
+        meta: { transition: 'fade'  },
+    },
+    {
+        path: '/friends',
+        name: 'friends',
+        component: () => import(/* webpackChunkName: "friends" */ '../views/FriendsView.vue'),
+        meta: { transition: 'fade'  },
+    },
+    {
+        path: '/products/:id',
+        name: 'products',
+        component: () => import('@/views/ProductDetailsView.vue'),
+        meta: {transitionName: 'fade'}
+    },
+    {
+        path:'/search',
+        name:'search',
+        component: () => import('@/views/SearchView.vue'),
+        meta: {transitionName: 'fade'}
+    },
+    {
+        path:'/profile',
+        name:'profile',
+        component: () => import('@/views/ProfileView.vue'),
+        meta: {transitionName: 'fade'}
+    },
+    {
+        // path:'/group',
+        path: '/group/:id',
+        name:'group',
+        component: () => import('@/views/BachecaView.vue'),
+        meta: {transitionName: 'fade'}
+    },
+    {
+        path: '/',
+        name: 'login',
+        component: () => import('@/views/LoginPage.vue'),
+        meta: { 
+            transition: 'fade', 
+            hideNavbar: true,
+        },
+    },
+    {
+        path: '/error',
+        name: 'error',
+        component: () => import('@/views/ErrorView.vue'),
+        meta: { transition: 'fade'  },
+    }
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes
+    history: createWebHistory(process.env.BASE_URL),
+    routes
 })
 
 export default router
