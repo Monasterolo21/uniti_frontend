@@ -21,14 +21,15 @@
                 </div>
         </div>
         <div class="subclass-horizontal-cards">
-            <h1>GRUPPI</h1>
+            <h1 class="todoTitle">GRUPPI</h1>
+            <h3 class="todoTitle">Presto su UNIT-I</h3>
                 <div class="board-group">
                     <CardComponent
                         v-for="gr in groups"
                         :key="gr.id"
                         :title="gr.name"
                         :subtitle="gr.tag"
-                        @click="goToGroup(gr)"
+                        :toDo="true"
                     />
         </div>
     </div>
@@ -151,5 +152,14 @@ export default {
     float: left;
     width: 100%;
     text-align: left;
+}
+.subclass-horizontal-cards .todoTitle {
+    margin: 0;
+    padding: 0;
+    font-size: 2em;
+    float: left;
+    width: 100%;
+    text-align: left;
+    color: gray; 
 }
 </style>

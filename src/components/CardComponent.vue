@@ -1,26 +1,42 @@
 <template>
-  <div class="card">
-    <div class="card-content">
-      <h2>{{ title }}</h2>
-      <h3>{{ subtitle }} </h3>
+    <div class="card" :class="{todo : toDo}">
+        <div class="card-content">
+            <h2>{{ title }}</h2>
+            <h3>{{ subtitle }} </h3>
+        </div>
     </div>
-  </div>
 </template>
+
+/**
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+ */
 
 <script>
 export default {
-  props: {
-    title: {
-      type: String,
-      required: true,
+    props: {
+        title: {
+            type: String,
+            required: true,
+        },
+        subtitle: {
+            type: String,
+            required: true,
+        },
+        toDo : {
+            type : Boolean,
+            required: false,
+        }
     },
-    subtitle: {
-      type: String,
-      required: true,
-    },
-  },
 };
 </script>
+
+/**
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+ */
 
 <style>
 .card {
@@ -33,6 +49,10 @@ export default {
   aspect-ratio: 1/1;
   height: auto;
   color: var(--white);
+}
+
+.todo {
+    background-color: rgb(215, 215, 215) !important
 }
 
 .card:nth-child(odd) {

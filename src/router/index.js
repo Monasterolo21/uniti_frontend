@@ -27,12 +27,12 @@ const routes = [
         component: () => import(/* webpackChunkName: "subscription" */ '../views/SubscriptionView.vue'),
         meta: { transition: 'fade'  },
     },
-    // {
-    //     path: '/friends',
-    //     name: 'friends',
-    //     component: () => import(/* webpackChunkName: "friends" */ '../views/FriendsView.vue'),
-    //     meta: { transition: 'fade'  },
-    // },
+    {
+        path: '/friends',
+        name: 'friends',
+        component: () => import(/* webpackChunkName: "friends" */ '../views/FriendsView.vue'),
+        meta: { transition: 'fade'  },
+    },
     {
         path: '/products/:id',
         name: 'products',

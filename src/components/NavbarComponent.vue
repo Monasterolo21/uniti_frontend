@@ -121,6 +121,7 @@ export default {
   margin-left: 5%;
   padding: 1%;
   border-radius: 0.5em;
+  background-color: rgb(212, 212, 212);
 }
 
 .hamburger-menu__line {
