@@ -7,7 +7,7 @@
             this.product.image +
             '); ' ">
             
-        <div class="product-content">
+        <div class="product-content" v-if="selectedAds">
             <h1 class="spanbold">{{ selectedAds.title }}</h1>
             <h3 class="subtitle spanbold">{{ selectedAds.description }}</h3>
             
@@ -67,6 +67,7 @@
 <script>
 import ButtonComponent from "@/components/ButtonComponent.vue";
 import store from "@/store";
+import router from "@/router";
 import { mapGetters } from "vuex";
 
 export default {
@@ -149,8 +150,15 @@ export default {
             })
             
         }
-
-  },
+    },
+    mounted() {
+        if (this.user) {   
+            //console.log(this.user)
+        } 
+        else {
+            router.replace('/error')
+        }
+    }
 };
 </script>
 

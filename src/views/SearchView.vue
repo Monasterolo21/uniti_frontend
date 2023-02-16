@@ -22,11 +22,13 @@
                 <h3>{{ c.name }}</h3>
                 </div>
             </div>
+
         <div class="search-cards">
             <search-card-component
-            v-for="s in xxx"
-            :key="s.id"
-            :result="s"
+            v-for="i in itemsToShow"
+            :key="i.id"
+            :result="i"
+            @click="goToItemPage(i)"
             />
         </div>
     </div>
@@ -42,6 +44,8 @@
 // import GlobalSearchComponent from "@/components/GlobalSearchComponent.vue";
 import SearchCardComponent from "@/components/SearchCardComponent.vue";
 import { mapGetters } from "vuex";
+import router from "@/router";
+import store from "@/store";
 
 export default {
     components: { /*GlobalSearchComponent, */SearchCardComponent },
@@ -51,112 +55,100 @@ export default {
             search : '',
             activeId: 1,
             categories: [
-            {
-            id: 1,
-            name: "Tutti",
-            },
-            {
-            id: 2,
-            name: "Bacheche",
-            },
-            {
-            id: 3,
-            name: "gruppi",
-            },
-            {
-            id: 4,
-            name: "prodotti",
-            },
-            {
-            id: 5,
-            name: "utenti",
-            },
+                {
+                    id: 1,
+                    name: "Bacheche",
+                },
+                {
+                    id: 2,
+                    name: "prodotti",
+                },            
             ],
 
-            searchResults: [
-            {
-            id: 1,
-            name: "Libro di Matematica",
-            description: "Libro di matematica per la scuola superiore",
-            price: 10,
-            category: "Libri",
-            user: {
-                name: "Mario Rossi",
-                avatar:
-                "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-            },
-            image:
-                "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-            },
-            {
-            id: 1,
-            name: "Libro di Matematica",
-            description: "Libro di matematica per la scuola superiore",
-            price: 10,
-            category: "Libri",
-            user: {
-                name: "Mario Rossi",
-                avatar:
-                "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-            },
-            image:
-                "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-            },
-            {
-            id: 1,
-            name: "Libro di Matematica",
-            description: "Libro di matematica per la scuola superiore",
-            price: 10,
-            category: "Libri",
-            user: {
-                name: "Mario Rossi",
-                avatar:
-                "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-            },
-            image:
-                "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-            },
-            {
-            id: 1,
-            name: "Libro di Matematica",
-            description: "Libro di matematica per la scuola superiore",
-            price: 10,
-            category: "Libri",
-            user: {
-                name: "Mario Rossi",
-                avatar:
-                "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-            },
-            image:
-                "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-            },
-            {
-            id: 2,
-            name: "Libro di Fisica",
-            description: "Libro di fisica per la scuola superiore",
-            price: 10,
-            category: "Libri",
-            user: {
-                name: "Mario Rossi",
-                avatar:
-                "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-            },
-            image:
-                "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-            },
-            {
-            id: 3,
-            name: "Libro di Chimica",
-            description: "Libro di fisica per la scuola superiore",
-            price: 10,
-            category: "Libri",
-            user: {
-                name: "Mario Rossi",
-                avatar:
-                "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-            },
-            },
-            ],
+            // searchResults: [
+            // {
+            // id: 1,
+            // name: "Libro di Matematica",
+            // description: "Libro di matematica per la scuola superiore",
+            // price: 10,
+            // category: "Libri",
+            // user: {
+            //     name: "Mario Rossi",
+            //     avatar:
+            //     "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+            // },
+            // image:
+            //     "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+            // },
+            // {
+            // id: 1,
+            // name: "Libro di Matematica",
+            // description: "Libro di matematica per la scuola superiore",
+            // price: 10,
+            // category: "Libri",
+            // user: {
+            //     name: "Mario Rossi",
+            //     avatar:
+            //     "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+            // },
+            // image:
+            //     "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+            // },
+            // {
+            // id: 1,
+            // name: "Libro di Matematica",
+            // description: "Libro di matematica per la scuola superiore",
+            // price: 10,
+            // category: "Libri",
+            // user: {
+            //     name: "Mario Rossi",
+            //     avatar:
+            //     "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+            // },
+            // image:
+            //     "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+            // },
+            // {
+            // id: 1,
+            // name: "Libro di Matematica",
+            // description: "Libro di matematica per la scuola superiore",
+            // price: 10,
+            // category: "Libri",
+            // user: {
+            //     name: "Mario Rossi",
+            //     avatar:
+            //     "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+            // },
+            // image:
+            //     "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+            // },
+            // {
+            // id: 2,
+            // name: "Libro di Fisica",
+            // description: "Libro di fisica per la scuola superiore",
+            // price: 10,
+            // category: "Libri",
+            // user: {
+            //     name: "Mario Rossi",
+            //     avatar:
+            //     "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+            // },
+            // image:
+            //     "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+            // },
+            // {
+            // id: 3,
+            // name: "Libro di Chimica",
+            // description: "Libro di fisica per la scuola superiore",
+            // price: 10,
+            // category: "Libri",
+            // user: {
+            //     name: "Mario Rossi",
+            //     avatar:
+            //     "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+            // },
+            // },
+            // ],
         };
     },
 
@@ -164,13 +156,17 @@ export default {
         ...mapGetters({
             boards : 'getUnitoBoards',
             ads : 'getBalonSaleAds',
+            user: "getUser",
         }),
 
-        xxx() {
+        itemsToShow() {
+            if(this.search.length <= 3)
+                return [];
             switch (this.activeId) {
-                case 2:
+                case 1: {                    
                     return this.boards.filter((b) => b.name.toLowerCase().includes(this.search.toLowerCase()))
-                case 4:
+                }
+                case 2:
                     return this.ads.filter((b) => b.description.toLowerCase().includes(this.search.toLowerCase()))
                 default:
                     return null;
@@ -179,6 +175,18 @@ export default {
     },
 
     methods: {
+
+        goToItemPage(item) {
+            let id = item.id;
+            if(this.activeId === 1)
+                router.push({ name: 'group', params: {id} });
+            if(this.activeId === 2) {
+                store.commit('setSelectedBalonAds',item);
+                router.push({ name: 'products', params: {id} });
+            }
+                
+        },
+
         isActive(id) {
             if (this.activeId == id) {
                 return true;
@@ -189,6 +197,18 @@ export default {
         setActive(id) {
             this.activeId = id;
         },
+    },
+
+    mounted() {
+        if (this.user) {  
+            if(this.ads.length <= 0)
+                store.dispatch('getBalonSaleAds');
+            if(this.boards.length <= 0)
+                store.dispatch("getAllUnitoBoards"); 
+        } 
+        else {
+            router.replace('/error')
+        }
     },
 };
 </script>

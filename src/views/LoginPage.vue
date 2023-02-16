@@ -46,6 +46,7 @@
 
 import { googleTokenLogin } from "vue3-google-login";
 import router from "@/router";
+import store from "@/store";
 
 export default {
 
@@ -68,11 +69,23 @@ export default {
                     }
                 );
                 const user = await res.json();
-
+                
                 if (user.hd === "edu.unito.it") {
-                    //alert("Benvenuto " + user.name);
-                    console.log(user);                
-                    router.push('/home')
+
+                    let reqUser = {
+                        email : user.email.toString(),
+                        name : user.given_name.toString(),
+                        surname : user.family_name.toString(),
+                        urlPicture : user.picture.toString(),
+                    }
+
+                    const res = store.dispatch('authenticationOAuth', reqUser);
+                    res.then((u) => {
+                        console.log(u);
+                        if(u)
+                            router.push('/home')
+                    })           
+                    
                 } else {
                     this.$swal({
                         position: 'top-end',

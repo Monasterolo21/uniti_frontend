@@ -22,9 +22,8 @@ import HeaderComponent from "@/components/HeaderComponent.vue";
 import MessagesComponent from "@/components/MessagesComponent.vue";
 import InputBarComponent from "@/components/InputBarComponent.vue";
 import store from "@/store";
-// import router from '@/router';
 import { mapGetters } from "vuex";
-// import router from "@/router";
+import router from "@/router";
 
 export default {
     components: { HeaderComponent, MessagesComponent, InputBarComponent },
@@ -63,21 +62,20 @@ export default {
     },
 
     mounted() {
-        console.log(this.boards)
-        let board = this.boards.find(el => el.id.toString() === this.$route.params.id);
-        store.dispatch('getContentsByBoard',board.id);
-        store.commit('setCurrentUnitoBoard', board)
-        //this.scrollToBottom();
+        if (this.user) {   
+            //console.log(this.boards)
+            let board = this.boards.find(el => el.id.toString() === this.$route.params.id);
+            store.dispatch('getContentsByBoard',board.id);
+            store.commit('setCurrentUnitoBoard', board)
+        } 
+        else {
+            router.replace('/error')
+        }
     },
 
+
     methods: {
-        scrollToBottom() {
-            // window.scrollTo({
-            //     top: document.body.scrollHeight,
-            //     behavior: "smooth",
-            // });
-            
-        },
+        
     },
 
     computed : {
@@ -85,6 +83,7 @@ export default {
             contents: "getUnitoBoardContents",
             boards: "getUnitoBoards",
             currentBoard : 'getCurrentBoard',
+            user: "getUser",
         }),
     }
 };

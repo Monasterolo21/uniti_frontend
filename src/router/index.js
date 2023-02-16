@@ -3,23 +3,12 @@ import HomeView from '../views/HomeView.vue'
 
 const routes = [
     {
-        path: '/test',
-        name: 'test',
-        component: () => import(/* webpackChunkName: "chat" */ '../views/TestView.vue'),
-        meta: { transition: 'fade'  },
-    },
-    {
         path: '/home',
         name: 'home',
         component: HomeView,
         meta: { transition: 'fade'  },
     },
-    {// TODO: Dynamic route
-        path: '/chat',
-        name: 'chat',
-        component: () => import(/* webpackChunkName: "chat" */ '../views/ChatView.vue'),
-        meta: { transition: 'fade'  },
-    },
+    
     {
         path: '/balon',
         name: 'balon',
@@ -38,12 +27,12 @@ const routes = [
         component: () => import(/* webpackChunkName: "subscription" */ '../views/SubscriptionView.vue'),
         meta: { transition: 'fade'  },
     },
-    {
-        path: '/friends',
-        name: 'friends',
-        component: () => import(/* webpackChunkName: "friends" */ '../views/FriendsView.vue'),
-        meta: { transition: 'fade'  },
-    },
+    // {
+    //     path: '/friends',
+    //     name: 'friends',
+    //     component: () => import(/* webpackChunkName: "friends" */ '../views/FriendsView.vue'),
+    //     meta: { transition: 'fade'  },
+    // },
     {
         path: '/products/:id',
         name: 'products',
@@ -63,7 +52,6 @@ const routes = [
         meta: {transitionName: 'fade'}
     },
     {
-        // path:'/group',
         path: '/group/:id',
         name:'group',
         component: () => import('@/views/BachecaView.vue'),
@@ -82,7 +70,10 @@ const routes = [
         path: '/error',
         name: 'error',
         component: () => import('@/views/ErrorView.vue'),
-        meta: { transition: 'fade'  },
+        meta: { 
+            transition: 'fade',  
+            hideNavbar: true,
+        },
     }
 ]
 

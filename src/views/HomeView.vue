@@ -24,6 +24,7 @@ import MessagesComponent from "@/components/MessagesComponent.vue";
 import InputBarComponent from "@/components/InputBarComponent.vue";
 import SwitchCategoryComponent from "@/components/SwitchCategoryComponent.vue";
 import store from "@/store";
+import router from "@/router";
 import { mapGetters } from "vuex";
 
 export default {
@@ -92,20 +93,13 @@ export default {
     },
 
     mounted() {
-        console.log('aaaaaaaa')
-        store.dispatch("getUserByEmail", "giulia.frumento@edu.unito.it");
-        //giulia.frumento@edu.unito.it
-        //fabio.ferrero111@edu.unito.it
-        
-        // user.then((user_value) => {
-        //   if(user_value) {
-        //     console.log(user_value);
-            
-        //   }
-        // })
-
-        store.dispatch('getContentsByBoard');
-        store.dispatch('getBalonCategories');
+        if (this.user) {   
+            store.dispatch('getContentsByBoard');
+            store.dispatch('getBalonCategories');
+        } 
+        else {
+            router.replace('/error')
+        }
     },
 };
 </script>

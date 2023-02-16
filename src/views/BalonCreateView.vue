@@ -70,6 +70,7 @@
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import ButtonComponent from "@/components/ButtonComponent.vue";
 import store from "@/store";
+import router from "@/router";
 import { mapGetters } from "vuex";
 
 export default {
@@ -78,63 +79,6 @@ export default {
 
     data() {
         return {
-            categories: [
-            {
-            id: 1,
-            name: "Libri",
-            },
-            {
-            id: 2,
-            name: "Tecnologia",
-            },
-            ],
-
-            products: [
-            {
-            id: 1,
-            name: "Libro di fisica",
-            price: 10,
-            category: "Libri",
-            image:
-                "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
-            description: "Libro di fisica per la scuola superiore",
-            user: "Mario Rossi",
-            },
-            {
-            id: 2,
-            name: "Libro di fisica",
-            price: 10,
-            category: "Libri",
-            image:
-                "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
-            description: "Libro di fisica per la scuola superiore",
-            user: "Mario Rossi",
-            },
-            {
-            id: 3,
-            name: "Libro di fisica",
-            price: 10,
-            category: "Libri",
-            image:
-                "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
-            description: "Libro di fisica per la scuola superiore",
-            user: "Mario Rossi",
-            },
-            {
-            id: 4,
-            name: "Libro di fisica",
-            price: 10,
-            category: "Libri",
-            image:
-                "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
-            description: "Libro di fisica per la scuola superiore",
-            user: "Mario Rossi",
-            },
-            ],
-
-            categoriess : [
-            "Cat1", "Cat2","Cat3"
-            ],
 
             title : '',
             description : '',
@@ -206,6 +150,15 @@ export default {
             balon_categories: "getBalonCategories",
         }),
     },
+
+    mounted() {
+        if (this.user) {   
+            //console.log(this.user)
+        } 
+        else {
+            router.replace('/error')
+        }
+    }
 };
 </script>
 

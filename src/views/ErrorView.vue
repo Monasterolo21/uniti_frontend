@@ -5,7 +5,8 @@
         <img src="@/assets/img/logo.png" alt="logo" />
       </div>
       <div class="error-page__container__text">
-        <p>Ops! Qualcosa è andato storto</p>
+        <h3>Ops! Qualcosa è andato storto</h3>
+        <p>Ricorda che devi autenticati prima di utilizzare UNIT-I</p>
       </div>
       <button-component text="Torna alla home" @primaryClick="this.goToHome" />
     </div>

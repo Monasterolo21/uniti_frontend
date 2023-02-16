@@ -24,9 +24,10 @@ export default new Vuex.Store({
     balon_saleAds : null,
     selected_balon_ads : null,
 
-    //BASE_URL : 'http://localhost:8080/api/',
-    BASE_URL : 'http://192.168.1.186:8080/api/',
+    BASE_URL : 'http://localhost:8080/api/',
+    //BASE_URL : 'http://192.168.1.186:8080/api/',
     Path : {
+        oAuth : 'auth/',
         users : 'users/',
         contents : 'contents/',
         boards : 'boards/',
@@ -47,21 +48,33 @@ export default new Vuex.Store({
 
   getters:{
     getUser : state => state.user,
+
     getHomeContent : state => {
         if(!state.home_contents)
             return [];
         else
             return state.home_contents.sort((a,b) => b.id - a.id);
     },
-    getUnitoBoards : state => state.unito_boards,
+
+    getUnitoBoards : state => {
+        if(!state.unito_boards)
+            return [];
+        return state.unito_boards.filter((b) => b.id > 1);
+    },
+
     getCurrentBoard : state => state.current_unito_board,
+    
     getUnitoBoardContents : state => {
         if(!state.current_unito_board_contents)
             return [];
         else
             return state.current_unito_board_contents.sort((a,b) => b.id - a.id);
     },
-    getBalonCategories : state => state.balon_categories.sort((a,b) => b.id - a.id),
+    getBalonCategories : state => {
+        if(!state.balon_categories)
+            return [];
+        return state.balon_categories.sort((a,b) => b.id - a.id);
+    },
     getBalonSaleAds : state => {
         if(!state.balon_saleAds)
             return [];
@@ -70,13 +83,6 @@ export default new Vuex.Store({
     },
     getSelectedBalonAds : state => state.selected_balon_ads,
     
-
-
-
-
-    isLogged: state => {
-      return state.isLogged
-    }
   },
 
 
@@ -136,53 +142,21 @@ export default new Vuex.Store({
         state.balon_saleAds.find(e => e.id === payload.id);
     },
 
-
-
-
-
-
-
-
-
-
-
-    setCategories(state, payload){
-      state.categories = payload;
-    },
-    setSubcategories(state, payload){
-      state.subcategories = payload;
-    },
-    setFirstCategory(state, payload){
-      state.firstCategory = payload;
-    },
-    setPlaces(state, payload){
-      state.places = payload;
-    },
-    setUserEmail(state, payload){
-      state.userEmail = payload;
-      state.isLogged = true;
-    },
-    setPos(state, payload){
-      state.currentPosition = payload;
-    },
-    setPlaceById(state, payload){
-      state.places.filter(place => place.id == payload.id)[0] = payload;
-    },
-    setDistanceById(state, payload){
-      console.log(payload.distanza);
-      state.places.filter(place => place.id == payload.id)[0] = payload;
-    }
   },
+
+
+
 
   actions: { // Async
 
-    async getUserByEmail({commit}, email) {
+    async authenticationOAuth({commit}, user) {
       try {
-        const url = this.state.BASE_URL + this.state.Path.users;
-        const response = await axios.get(url + 'getUser/' + email);    
-        const user = response.data;    
-        commit("setUser", user);
-        return user;
+        const url = this.state.BASE_URL + this.state.Path.oAuth;
+        const response = await axios.post(url , user);    
+        const user_res = response.data;    
+        
+        commit("setUser", user_res);
+        return user_res;
 
       } catch (errors) {
         console.error(errors);
@@ -195,7 +169,7 @@ export default new Vuex.Store({
             const url = this.state.BASE_URL + this.state.Path.users;
             const response = await axios.post(url + 'updateUser', userEdited); 
             const user = response.data;
-            console.log(user);  
+             
             commit("setUser", user);
             return user;
         } catch(errors) {

@@ -9,13 +9,6 @@
             <h1>BACHECHE</h1>
                 <div class="board-group">
         
-                    <!-- <CardComponent
-                    v-for="ba in board"
-                    :key="ba.id"
-                    :title="ba.name"
-                    :subtitle="ba.tag"
-                    @click="goToGroup(ba.id)"
-                    /> -->
 
                     <CardComponent 
                         v-for="b in boards"
@@ -39,8 +32,7 @@
                     />
         </div>
     </div>
-    <!-- Commented for the demo -->
-    <!-- <add-button-component /> -->
+    
   </div>
 </template>
 
@@ -106,21 +98,25 @@ export default {
     methods: {
         goToGroup(board) {
             let id = board.id.toString();
-            
-            //store.commit('setCurrentUnitoBoard', board)
             router.push({ name: 'group', params: {id} })
-            // this.$route.params.group = this.group;
-            // this.$router.push("/group");
+            
         },
     },
 
     mounted() {
-        store.dispatch("getAllUnitoBoards");
+        if (this.user) {   
+            store.dispatch("getAllUnitoBoards");
+        } 
+        else {
+            router.replace('/error')
+        }
+        
     },
 
     computed: {
         ...mapGetters({
-        boards: "getUnitoBoards",
+            user: "getUser",
+            boards: "getUnitoBoards",
         }),
     },
 };
