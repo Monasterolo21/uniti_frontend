@@ -155,7 +155,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: left;
-  margin: 0.5em 1em;
+  margin: 1em 1em;
 }
 
 .logo-section img {

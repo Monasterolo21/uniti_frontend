@@ -29,7 +29,8 @@
                 </div>
             </div>
 
-            <div class="ownAds">
+            <div v-if="isOwner" 
+                 class="ownAds" >
                 <h3 class="subtitle spanbold">
                     Sei il proprietario di questo annuncio!
                 </h3>
@@ -101,6 +102,10 @@ export default {
 
         adsActiveStr() {
             return this.selectedAds.active ? 'SI' : 'NO';
+        },
+
+        isOwner() {
+            return this.user.email === this.selectedAds.owneremail;
         }
     },
 
