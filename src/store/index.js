@@ -14,6 +14,7 @@ export default new Vuex.Store({
     user : null,
 
     home_contents : null,
+    telegram_contents : null,
     home_board_ID : 1,
 
     unito_boards : null,
@@ -56,6 +57,13 @@ export default new Vuex.Store({
             return state.home_contents.sort((a,b) => b.id - a.id);
     },
 
+    getTelegramContents : state => {
+        if(!state.telegram_contents)
+            return [];
+        else
+            return state.telegram_contents.sort((a,b) => b.msgId - a.msgId);
+    },
+
     getUnitoBoards : state => {
         if(!state.unito_boards)
             return [];
@@ -96,6 +104,10 @@ export default new Vuex.Store({
     setHomeContent(state, payload) {
       state.home_contents = payload;
       console.log('Added to Home')
+    },
+
+    setTelegramContents(state, payload) {
+        state.telegram_contents = payload;
     },
 
     setUnitoBoards(state, payload) {
@@ -199,6 +211,18 @@ export default new Vuex.Store({
           console.log(errors);
           return null;
       }
+    },
+
+    async getTGContents({commit}) {
+        try {
+            const url = this.state.BASE_URL + this.state.Path.contents;
+            const response = await axios.get(url + 'getTelegramContent');
+            const tg = response.data;
+            commit('setTelegramContents',tg);
+            return tg;
+        } catch(errors) {
+            console.log(errors);
+        }
     },
 
     async getAllUnitoBoards({commit}) {

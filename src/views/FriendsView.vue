@@ -2,7 +2,7 @@
   <div class="panel">
     <h1 class="friend-text">Questa sezione sarà presto disponibile su UNIT-I</h1>
     <h2 class="friend-text2">Prossimamente qui troverai:</h2>
-    <h2 class="friend-text2">I TUOI AMICI</h2>
+    <h2 class="friend-text2">- I tuoi AMICI</h2>
     <h3 class="friend-text2">La lista dei tuoi amici, con la possibilità di vedere le loro informazioni, coma la bio, la mail, ecc...</h3>
     <h2 class="friend-text2">- La chat</h2>
     <h3 class="friend-text2">Chat con la quale potrai scambiare messaggi con la tua cerchia di amici</h3>

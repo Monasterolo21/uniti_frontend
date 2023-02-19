@@ -5,7 +5,7 @@
       @click="changeCategory(1)"
       :class="{ active: activeCategory == 1 }"
     >
-      POST
+      Post
     </div>
     <div
       class="category right"
