@@ -1,1 +1,1 @@
-docker build . -t vue-uniti-app
+docker build . -t vue-uniti

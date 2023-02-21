@@ -49,7 +49,7 @@ export default {
     computed: {
         msgDate() {
             let d = new Date(this.message.dateTime);
-            return d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear() + ' - ' + d.getHours() + ':' + d.getMinutes();
+            return d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear() + ' - ' + d.getHours() + ':' + d.getMinutes();
         },
 
         messageAvatar() {

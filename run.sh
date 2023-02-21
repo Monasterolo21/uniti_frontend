@@ -1,1 +1,1 @@
-docker run -d -p 5050:80 vue-uniti-app
+docker run -d -p 5050:80 vue-uniti
