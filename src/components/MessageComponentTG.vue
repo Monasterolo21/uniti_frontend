@@ -138,7 +138,7 @@ export default {
     padding: 0;
 }
 .message-content .tg_text {
-    white-space: pre;
+    white-space: pre-line;
 }
 
 .message-footer {
